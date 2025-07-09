@@ -226,6 +226,10 @@ for domain in ADKAR_DOMAINS:
 # === Witruimte boven de titel
 st.markdown(" ")
 st.markdown(" ")
+st.markdown(" ")
+st.markdown(" ")
+st.markdown(" ")
+st.markdown(" ")
 
 st.markdown("### 📊 ADKAR Profieloverzicht")
 
@@ -282,16 +286,27 @@ elif avg_score < 4:
 else:
     summary_text = "🟢 De ADKAR-score is sterk. Er is een breed draagvlak en voldoende kennis en motivatie aanwezig voor succesvolle verandering."
 
-# === 4. Layout in 2 kolommen
-left_col, right_col = st.columns([1.2, 1])
+# === 4. Visuele box met inhoud
+with st.container():
+    st.markdown(
+        """
+        <div style="background-color: #f2f2f2; padding: 25px 20px 10px 20px; border-radius: 12px;">
+            <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
+        """,
+        unsafe_allow_html=True
+    )
 
-with left_col:
-    st.plotly_chart(fig_gauge, use_container_width=True)
-    st.plotly_chart(fig_radar, use_container_width=True)
+    left_col, right_col = st.columns([1.2, 1])
 
-with right_col:
-    st.markdown("#### 🧠 AI Samenvatting")
-    st.markdown(summary_text)
+    with left_col:
+        st.plotly_chart(fig_gauge, use_container_width=True)
+        st.plotly_chart(fig_radar, use_container_width=True)
+
+    with right_col:
+        st.markdown("#### 🧠 AI Samenvatting")
+        st.markdown(summary_text)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # === PDF Export ===
 def generate_pdf(results):
