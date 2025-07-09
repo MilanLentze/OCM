@@ -234,7 +234,7 @@ st.markdown(" ")
 # === ADKAR Profieloverzicht Blok ===
 <style>
 .gray-box-content {
-    background-color: white;  /* of gewoon weglaten */
+    background-color: white;
     padding: 30px;
     border-radius: 10px;
     margin-top: 50px;
