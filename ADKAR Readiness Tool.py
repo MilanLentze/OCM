@@ -324,7 +324,7 @@ with st.container():
                 return summary_matrix[change_type][key]
         return "⚠️ Geen samenvatting beschikbaar."
    
-    change_type = st.selectbox("Selecteer het veranderingsdomein:", options=["Proces", "Technologie", "Structuur", "Cultuur"])
+   
     summary_text = get_summary(avg_score, change_type)
 
     # === 4. Lay-out visualisaties + samenvatting
