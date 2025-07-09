@@ -8,6 +8,8 @@ import json
 from fpdf import FPDF
 import tempfile
 
+st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
+
 # 💄 Vergroot de titel van expanders
 st.markdown(
     """
@@ -22,8 +24,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 
 # === Constantes ===
 ADKAR_DOMAINS = ["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]
