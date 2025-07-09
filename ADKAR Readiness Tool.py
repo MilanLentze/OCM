@@ -232,14 +232,7 @@ st.markdown(" ")
 st.markdown(" ")
 
 # === ADKAR Profieloverzicht Blok ===
-<style>
-.gray-box-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    margin-top: 50px;
-}
-</style>
+
 with st.container():
     st.markdown('<div class="gray-box-content">', unsafe_allow_html=True)
 
@@ -339,8 +332,6 @@ with st.container():
     with right_col:
         st.markdown("#### 🧠 ADKAR Samenvatting")
         st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # === Witruimte boven de titel
 st.markdown(" ")
