@@ -165,6 +165,13 @@ FEEDBACK_MATRIX = {
 }
 }
 
+st.title("📘 ADKAR Analyse")
+st.markdown("MDLentze")
+st.markdown(" ")
+st.markdown("Beoordeel elk ADKAR-domein en verkrijg inzichten in mogelijke gedragssignalen, oorzaken en aanbevelingen.")
+
+results = {}
+
 # === Excel Upload Functionaliteit ===
 uploaded_file = st.file_uploader("📤 Upload Excel met ADKAR scores", type=["xlsx", "csv"])
 mean_scores = {}  # Initieel leeg
@@ -182,13 +189,6 @@ if uploaded_file:
 
     mean_scores = df[["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]].mean().round(1).to_dict()
     st.success("✅ Gemiddelde scores succesvol geladen uit upload.")
-
-st.title("📘 ADKAR Analyse")
-st.markdown("MDLentze")
-st.markdown(" ")
-st.markdown("Beoordeel elk ADKAR-domein en verkrijg inzichten in mogelijke gedragssignalen, oorzaken en aanbevelingen.")
-
-results = {}
 
 # === Keuze van type verandering ===
 change_type = st.selectbox("Selecteer het type verandering:", CHANGE_TYPES)
