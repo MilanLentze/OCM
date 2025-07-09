@@ -196,7 +196,9 @@ change_type = st.selectbox("Selecteer het type verandering:", CHANGE_TYPES)
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
     with st.expander(f"🔍 {domain}"):
-        score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
+        default = mean_scores.get(domain, 3.0)  # fallback is 3.0 als geen upload
+        score = st.slider("", 1.0, 5.0, value=default, step=0.1, key=f"slider_{domain}")
+
 
         # 🧠 Bepaal juiste label op basis van score
         if 1.0 <= score <= 1.9:
