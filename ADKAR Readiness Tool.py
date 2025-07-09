@@ -318,15 +318,15 @@ with st.container():
         }
 
     # Hulp: juiste tekst ophalen
-def get_summary(avg_score, change_type):
-    for key in summary_matrix[change_type]:
-        if len(key) == 1 and avg_score == key[0]:
-            return summary_matrix[change_type][key]
-        elif len(key) == 2:
-            low, high = key
-            if low <= avg_score < high:
+    def get_summary(avg_score, change_type):
+        for key in summary_matrix[change_type]:
+            if len(key) == 1 and avg_score == key[0]:
                 return summary_matrix[change_type][key]
-    return "⚠️ Geen samenvatting beschikbaar."
+            elif len(key) == 2:
+                low, high = key
+                if low <= avg_score < high:
+                    return summary_matrix[change_type][key]
+        return "⚠️ Geen samenvatting beschikbaar."
 
     summary_text = get_summary(avg_score, change_type)
 
