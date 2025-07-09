@@ -177,6 +177,9 @@ for domain in ADKAR_DOMAINS:
             "intervention": feedback[2]
         }
     }
+ 
+import matplotlib.pyplot as plt
+import numpy as np
 
 # === VISUALISATIES ===
 st.subheader("📊 Visuele weergave van ADKAR-profiel")
@@ -242,8 +245,6 @@ if st.button("Download resultaat als JSON"):
         file_name="adkar_resultaat.json",
         mime="application/json"
     )
-    import matplotlib.pyplot as plt
-import numpy as np
 
 
 
