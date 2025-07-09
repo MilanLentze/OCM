@@ -10,15 +10,15 @@ import tempfile
 
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 
-# 💄 Vergroot de titel van expanders
 st.markdown(
     """
     <style>
     .streamlit-expanderHeader {
-        font-size: 1.3rem;
-        font-weight: 700;
-        padding-top: 0.4rem;
-        padding-bottom: 0.4rem;
+        font-size: 1.8rem !important;
+        font-weight: 800 !important;
+        padding-top: 0.8rem !important;
+        padding-bottom: 0.8rem !important;
+        color: #333333;
     }
     </style>
     """,
