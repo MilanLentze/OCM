@@ -224,6 +224,8 @@ for domain in ADKAR_DOMAINS:
             }
         }
 
+st.subheader("📊 ADKAR Profieloverzicht")
+
 # === Gemiddelde Score ===
 import plotly.graph_objects as go
 
@@ -248,7 +250,6 @@ fig_gauge = go.Figure(go.Indicator(
 st.plotly_chart(fig_gauge, use_container_width=True)
 
 # === Radar Chart (Plotly) ===
-st.subheader("📊 ADKAR Profieloverzicht")
 labels = ADKAR_DOMAINS
 scores = [results[d]["score"] for d in labels]
 scores += scores[:1]
