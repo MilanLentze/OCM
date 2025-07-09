@@ -329,7 +329,50 @@ with st.container():
         return "⚠️ Geen samenvatting beschikbaar."
 
     summary_text = get_summary(avg_score, change_type)
+    
+    # --- Intervention Matrix
+    intervention_matrix = {
+        "Proces": {
+            (1.0, 2.0): "🎯 Organiseer verdiepende sessies over het 'waarom' van de verandering. Zet interne ambassadeurs in en betrek teams actief bij het herontwerpen van hun werkproces.",
+            (2.0, 3.0): "👥 Gebruik storytelling en praktijkvoorbeelden om urgentie tastbaar te maken. Laat leidinggevenden het goede voorbeeld geven en bied ruimte voor dialoog.",
+            (3.0, 4.0): "🔧 Bied extra coaching aan op gedragsniveau. Evalueer samen met teams waar knelpunten zitten en maak het nieuwe proces visueel en meetbaar.",
+            (4.0, 5.0): "📈 Versterk met peer feedback, vier successen, en koppel procesprestaties aan teamdoelstellingen. Houd het leerproces levend.",
+            (5.0,):     "🏆 Geef eigenaarschap aan teams om processen te optimaliseren. Laat hen goede voorbeelden delen en stel hen in staat als interne adviseurs op te treden."
+        },
+        "Technologie": {
+            (1.0, 2.0): "💡 Start met kleinschalige pilots waarin medewerkers in een veilige omgeving kunnen oefenen. Laat tech-savvy collega’s optreden als buddy of coach.",
+            (2.0, 3.0): "🛠️ Bouw laagdrempelige handleidingen, video tutorials en quick reference cards. Faciliteer workshops waarin medewerkers hun zorgen kunnen uiten.",
+            (3.0, 4.0): "🔍 Focus op praktijkgerichte training. Stimuleer dagelijkse toepassing door micro-learnings en dagelijkse ‘how-to’ momenten.",
+            (4.0, 5.0): "🚀 Laat power users collega’s trainen. Verzamel en verspreid best practices en koppel feedback aan optimalisaties van de tool.",
+            (5.0,):     "💼 Monitor gebruik en impact met dashboards. Laat gebruikers meedenken over doorontwikkeling en beloon innovatief gebruik."
+        },
+        "Structuur": {
+            (1.0, 2.0): "🧭 Organiseer heroriëntaties op rollen en mandaten. Creëer ruimte voor emoties bij verlies van status of verandering van hiërarchie.",
+            (2.0, 3.0): "🧩 Maak verantwoordelijkheden visueel en expliciet (bv. via RACI-schema's). Laat teams gezamenlijk hun samenwerking herontwerpen.",
+            (3.0, 4.0): "📌 Verhelder escalatieroutes, beslisbevoegdheden en overlegstructuren. Laat leidinggevenden consistent sturen op nieuwe structuur.",
+            (4.0, 5.0): "🔗 Koppel teamdoelen en resultaten aan de nieuwe structuur. Gebruik intervisie om structurele frictie op te lossen.",
+            (5.0,):     "🏗️ Monitor en optimaliseer continu de effectiviteit van de structuur. Betrek teams bij het herinrichten op basis van ervaringen."
+        },
+        "Cultuur": {
+            (1.0, 2.0): "🚫 Start met dialoogsessies over de gewenste en huidige cultuur. Benoem onbespreekbaar gedrag en zet een ‘coalition of the willing’ op.",
+            (2.0, 3.0): "🎭 Werk aan congruentie tussen formeel gedrag en informele signalen. Stimuleer kwetsbaar leiderschap en voorbeeldgedrag.",
+            (3.0, 4.0): "📣 Maak gewenste waarden concreet in gedrag. Gebruik storytelling, werkvormen en feedbackcycli om te oefenen met nieuw gedrag.",
+            (4.0, 5.0): "🌱 Bouw voort op zichtbaar gedrag met peer coaching en rituelen. Leg cultuurverandering vast in onboarding en leiderschap.",
+            (5.0,):     "🌟 Zet cultuurdragers in als mentor. Monitor cultuur met pulse surveys en vier momenten die symbool staan voor de kernwaarden."
+        }
+    }
 
+    # --- Interventie op basis van score + type
+    def get_intervention(avg_score, change_type):
+        for key in intervention_matrix[change_type]:
+            low = key[0]
+            high = key[1] if len(key) > 1 else 5.0
+            if low <= avg_score < high or avg_score == 5.0:
+                return intervention_matrix[change_type][key]
+        return "⚠️ Geen interventie gevonden."
+
+    intervention_text = get_intervention(avg_score, change_type)
+    
     # === 4. Lay-out visualisaties + samenvatting
     left_col, right_col = st.columns([1.2, 1])
 
