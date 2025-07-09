@@ -183,12 +183,22 @@ for domain in ADKAR_DOMAINS:
         else:
             status_label = "✅ Sterk domein"
 
-        # Toon output in expander
-        st.markdown(f"### {domain} – {status_label}")
-        st.markdown(f"**Score:** {score}  \n**Type verandering:** {change_type}")
-        st.markdown(f"**Gedragssignaal:** {feedback[0]}")
-        st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
-        st.markdown(f"**Aanpak/interventie:** {feedback[2]}")
+# Toon output in visueel nette box
+st.markdown(
+    f"""
+    <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
+        <h5 style="margin-bottom: 0.5rem;">{domain} – {status_label}</h5>
+        <p style="margin: 0.2rem 0;"><strong>🔢 Score:</strong> {score:.1f}</p>
+        <p style="margin: 0.2rem 0;"><strong>🔧 Type verandering:</strong> {change_type.capitalize()}</p>
+        <hr style="margin: 0.7rem 0;">
+        <p style="margin: 0.2rem 0;"><strong>📍 Gedragssignaal:</strong><br>{feedback[0]}</p>
+        <p style="margin: 0.2rem 0;"><strong>💡 Mogelijke oorzaak:</strong><br>{feedback[1]}</p>
+        <p style="margin: 0.2rem 0;"><strong>🛠️ Aanpak/interventie:</strong><br>{feedback[2]}</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
         # Voeg toe aan resultaten
         results[domain] = {
