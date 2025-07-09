@@ -333,7 +333,7 @@ with st.container():
         st.plotly_chart(fig_gauge, use_container_width=True)
         st.plotly_chart(fig_radar, use_container_width=True)
 
-   with right_col:
+with right_col:
     st.markdown("#### 🧠 ADKAR Samenvatting")
     
     st.markdown(f"""
