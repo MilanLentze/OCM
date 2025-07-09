@@ -225,8 +225,27 @@ for domain in ADKAR_DOMAINS:
         }
 
 # === Gemiddelde Score ===
+import plotly.graph_objects as go
+
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
-st.metric("Gemiddelde ADKAR-score", avg_score)
+
+fig_gauge = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=avg_score,
+    title={'text': "Gemiddelde ADKAR-score"},
+    gauge={
+        'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
+        'bar': {'color': "royalblue"},
+        'steps': [
+            {'range': [1.0, 2.0], 'color': '#ffcccc'},
+            {'range': [2.0, 3.0], 'color': '#ffe0b3'},
+            {'range': [3.0, 4.0], 'color': '#ffffb3'},
+            {'range': [4.0, 5.0], 'color': '#ccffcc'}
+        ],
+    }
+))
+
+st.plotly_chart(fig_gauge, use_container_width=True)
 
 # === Radar Chart (Plotly) ===
 st.subheader("📊 ADKAR Profieloverzicht")
