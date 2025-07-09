@@ -233,22 +233,15 @@ with st.container():
     st.markdown(
         """
         <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
+        <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
         """,
         unsafe_allow_html=True
     )
 
-    with st.container():
-    st.markdown(
-        """
-        <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
-        <h3>📊 ADKAR Profieloverzicht</h3>
-        """,
-        unsafe_allow_html=True
-
-    # Bereken gemiddelde ADKAR-score
+    # Bereken gemiddelde
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
-    # === 1. Gauge Chart
+    # === 1. Gauge chart
     fig_gauge = go.Figure(go.Indicator(
         mode="gauge+number",
         value=avg_score,
@@ -266,7 +259,7 @@ with st.container():
     ))
     fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 
-    # === 2. Radar Chart
+    # === 2. Radar chart
     labels = ADKAR_DOMAINS.copy()
     scores = [results[d]["score"] for d in labels]
     scores += scores[:1]
@@ -337,7 +330,7 @@ with st.container():
         st.plotly_chart(fig_radar, use_container_width=True)
 
     with right_col:
-        st.markdown("#### 🧠 AI Samenvatting")
+        st.markdown("#### 🧠 ADKAR Samenvatting")
         st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
