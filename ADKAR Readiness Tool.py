@@ -173,7 +173,7 @@ st.markdown("Upload ADKAR-scores of beoordeel elk ADKAR-domein en verkrijg inzic
 results = {}
 st.markdown(" ")
 # === Excel Upload Functionaliteit ===
-uploaded_file = st.file_uploader("1) Upload Excel met ADKAR scores (format: Medewerker # | Awareness | Desire | Knowledge | Ability | Reinforcement", type=["xlsx", "csv"])
+uploaded_file = st.file_uploader(" 1. Upload Excel met ADKAR scores (format: Medewerker # | Awareness | Desire | Knowledge | Ability | Reinforcement)", type=["xlsx", "csv"])
 mean_scores = {}  # Initieel leeg
 
 if uploaded_file:
@@ -191,10 +191,10 @@ if uploaded_file:
     st.success("✅ Gemiddelde scores succesvol geladen uit upload.")
 
 # === Keuze van type verandering ===
-change_type = st.selectbox("2) Selecteer een type verandering:", CHANGE_TYPES)
+change_type = st.selectbox(" 2. Selecteer een type verandering:", CHANGE_TYPES)
 
 # === Invoer per domein ===
-st.markdown("3) Bekijk per domein de score, gedragssignaal, oorzaak en interventie")
+st.markdown(" 3. Bekijk per domein de score, gedragssignaal, oorzaak en interventie")
 for domain in ADKAR_DOMAINS:
     with st.expander(f"🔍 {domain}"):
         default = mean_scores.get(domain, 3.0)  # fallback is 3.0 als geen upload
