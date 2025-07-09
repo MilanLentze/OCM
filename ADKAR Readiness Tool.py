@@ -276,7 +276,7 @@ fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 labels = ADKAR_DOMAINS.copy()
 scores = [results[d]["score"] for d in labels]
 scores += scores[:1]
- labels += labels[:1]
+labels += labels[:1]
 
 fig_radar = go.Figure()
 fig_radar.add_trace(go.Scatterpolar(
