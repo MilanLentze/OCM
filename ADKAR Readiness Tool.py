@@ -199,7 +199,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
         # Voeg toe aan resultaten
         results[domain] = {
             "score": score,
