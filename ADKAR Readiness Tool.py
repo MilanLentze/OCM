@@ -7,6 +7,7 @@ import numpy as np
 import json
 from fpdf import FPDF
 import tempfile
+import pandas as pd
 
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 st.markdown("""
@@ -164,6 +165,23 @@ FEEDBACK_MATRIX = {
 }
 }
 
+# === Excel Upload Functionaliteit ===
+uploaded_file = st.file_uploader("📤 Upload Excel met ADKAR scores", type=["xlsx", "csv"])
+mean_scores = {}  # Initieel leeg
+
+if uploaded_file:
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file)
+    else:
+        df = pd.read_excel(uploaded_file)
+
+    required_cols = ["Responders", "Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]
+    if not all(col in df.columns for col in required_cols):
+        st.error("❌ Het bestand moet de volgende kolommen bevatten: " + ", ".join(required_cols))
+        st.stop()
+
+    mean_scores = df[["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]].mean().round(1).to_dict()
+    st.success("✅ Gemiddelde scores succesvol geladen uit upload.")
 
 st.title("📘 ADKAR Analyse")
 st.markdown("MDLentze")
