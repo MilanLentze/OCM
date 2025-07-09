@@ -223,6 +223,9 @@ for domain in ADKAR_DOMAINS:
                 "intervention": feedback[2]
             }
         }
+# === Witruimte boven de titel
+st.markdown(" ")
+st.markdown(" ")
 
 st.markdown("### 📊 ADKAR Profieloverzicht")
 
