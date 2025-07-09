@@ -1,155 +1,115 @@
 import streamlit as st
-import plotly.graph_objects as go
 import pandas as pd
 import json
-from datetime import datetime
+import datetime
+import plotly.graph_objects as go
+from io import StringIO
 
-st.set_page_config(page_title="ADKAR Readiness Profiel", layout="wide")
-st.title("📊 ADKAR Readiness Profiel Tool")
-st.markdown("**Powered by Milan Lentze – AI Change Design**")
+st.set_page_config(page_title="ADKAR Readiness 2.0", layout="wide")
 
-st.markdown("""
-Deze tool helpt je om de veranderbereidheid van een team of organisatie in kaart te brengen aan de hand van het ADKAR-model.
-Vul de score in (1.0–5.0) voor elk domein. De analyse geeft je niet alleen een score, maar ook gedragsinterpretatie, mogelijke oorzaken, risico's en concrete interventies per domein.
-""")
+st.title("🧭 ADKAR Readiness Profiler 2.0")
+st.markdown("Een diepgaande scan voor verandermanagement")
 
-# Contextvelden
-with st.expander("🧩 Contextinformatie toevoegen"):
-    context = st.text_input("Welke verandering betreft het?")
-    doelgroep = st.selectbox("Welke doelgroep betreft het?", ["Zorgmedewerkers", "Leidinggevenden", "IT", "Overig"])
+# --- Session meta info ---
+st.sidebar.header("📋 Sessiedetails")
+session_name = st.sidebar.text_input("Naam sessie", value="Sessie " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+doelgroep = st.sidebar.text_input("Doelgroep (bv. team, afdeling)")
+change_type = st.sidebar.selectbox("Type verandering", ["Proces", "Technologie", "Structuur", "Cultuur", "Anders"])
 
-# Invoerform
-with st.form("adkar_form"):
-    col1, col2, col3 = st.columns(3)
+# --- Sliders ---
+st.sidebar.markdown("---")
+st.sidebar.header("🎯 ADKAR Scores")
+awareness = st.sidebar.slider("Awareness", 1.0, 5.0, 3.0, 0.1)
+desire = st.sidebar.slider("Desire", 1.0, 5.0, 3.0, 0.1)
+knowledge = st.sidebar.slider("Knowledge", 1.0, 5.0, 3.0, 0.1)
+ability = st.sidebar.slider("Ability", 1.0, 5.0, 3.0, 0.1)
+reinforcement = st.sidebar.slider("Reinforcement", 1.0, 5.0, 3.0, 0.1)
 
-    with col1:
-        awareness = st.slider("Awareness (waarom de verandering nodig is)", 1.0, 5.0, 3.0, 0.1)
-        desire = st.slider("Desire (motivatie om te veranderen)", 1.0, 5.0, 3.0, 0.1)
-    with col2:
-        knowledge = st.slider("Knowledge (hoe te veranderen)", 1.0, 5.0, 3.0, 0.1)
-        ability = st.slider("Ability (vaardigheid om het te doen)", 1.0, 5.0, 3.0, 0.1)
-    with col3:
-        reinforcement = st.slider("Reinforcement (bekrachtiging en borging)", 1.0, 5.0, 3.0, 0.1)
+scores = {
+    "Awareness": awareness,
+    "Desire": desire,
+    "Knowledge": knowledge,
+    "Ability": ability,
+    "Reinforcement": reinforcement
+}
 
-    session_name = st.text_input("Sessienaam of teamlabel", value=f"sessie_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
-    compare_upload = st.file_uploader("📁 Vergelijk met eerder opgeslagen sessie (optioneel)", type="json")
-    submitted = st.form_submit_button("🔍 Analyseer")
-
-if submitted:
-    adkar_scores = {
-        "Awareness": awareness,
-        "Desire": desire,
-        "Knowledge": knowledge,
-        "Ability": ability,
-        "Reinforcement": reinforcement
+# --- Analysis logic ---
+def interpret_score(domain, score):
+    levels = {
+        "Awareness": [
+            (1.9, "Volledige onwetendheid of verwarring", "Geen communicatie, vaagheid, overload", "Visuele storytelling, urgentiecampagnes, leiderschapscascade"),
+            (2.9, "Weinig tot oppervlakkig begrip", "Te algemene uitleg, misconnectie met werkpraktijk", "Context-specifieke voorbeelden, vertaalsessies op teamniveau"),
+            (3.9, "Begrip aanwezig maar niet overtuigend", "Info ontvangen maar geen verbinding", "Dialoogsessies, framingworkshops, ‘wat betekent dit voor mij?’"),
+            (5.0, "Helder en geaccepteerd waarom het nodig is", "Transparante communicatie, heldere richting", "Storytelling delen, versterken via informele netwerken")
+        ],
+        "Desire": [
+            (1.9, "Actieve weerstand of passieve sabotering", "Angst, statusverlies, overload", "Luistersessies, invloed geven, dialoog op waarden"),
+            (2.9, "Afstandelijk of sceptisch", "Verlies van autonomie, geen vertrouwen", "Peer influence, inspirerende koplopers, persoonlijke benefits zichtbaar maken"),
+            (3.9, "Neutrale houding, afwachtend", "Zien wel het nut, maar nog geen energie", "Change ambassadors inzetten, betrokkenheid via co-creatie"),
+            (5.0, "Positieve energie, enthousiasme", "Begrip + persoonlijk belang herkend", "Versterken, podium geven aan enthousiaste collega’s")
+        ],
+        "Knowledge": [
+            (1.9, "Geen idee wat ik moet doen", "Geen training, te abstract, overload", "Praktijkgerichte instructie, video’s, demo’s"),
+            (2.9, "Er is training, maar verwarring blijft", "Generieke content, geen vertaalslag", "Rollen-specifieke uitleg, buddy system"),
+            (3.9, "Begrip, maar onzeker over details", "Teveel tegelijk, vergeten na training", "Refreshers, just-in-time support, Q&A"),
+            (5.0, "Duidelijk wat wanneer verwacht wordt", "Heldere tools, structuur, herhaling", "Borg in onboarding, laat experts begeleiden")
+        ],
+        "Ability": [
+            (1.9, "Onzekerheid, fouten, frustratie", "Geen tijd, geen oefenruimte, systeemhindernissen", "Safe practice-omgeving, mentorhulp, druk verminderen"),
+            (2.9, "Pogingen, maar weerstand door complexiteit", "Technische of procedurele barrières", "Simpel maken, stapsgewijze implementatie"),
+            (3.9, "Het lukt deels, met onzekerheid", "Ervaring groeit, maar afhankelijk van hulp", "Ondersteuning uitbreiden, feedbackloops creëren"),
+            (5.0, "Volwaardig kunnen uitvoeren", "Ruimte, middelen, ervaring aanwezig", "Laat collega's anderen trainen (train-de-trainer)")
+        ],
+        "Reinforcement": [
+            (1.9, "Oude gedrag keert terug, niemand zegt iets", "Geen opvolging, leiderschap negeert verandering", "Evaluaties, consequenties, leiders betrekken"),
+            (2.9, "Enkele pogingen, niet structureel", "Geen beleid, geen zichtbaar voorbeeldgedrag", "Successen vieren, beleid integreren"),
+            (3.9, "Soms zichtbaar, afhankelijk van team", "Geen uniforme aanpak, leiderschap niet consistent", "Belonen gewenst gedrag, gedrag meetbaar maken"),
+            (5.0, "Verandering is onderdeel van cultuur", "Structuren zijn aangepast, gedrag is norm", "Continu feedback, cultuurdragers versterken")
+        ]
     }
+    for threshold, signal, cause, advice in levels[domain]:
+        if score <= threshold:
+            return signal, cause, advice
 
-    adkar_info = {
-        "Awareness": {
-            "gedrag": "Vermijden van of onbegrip over het waarom van de verandering.",
-            "beleving": "Vaagheid, onduidelijkheid.",
-            "oorzaak": "Geen persoonlijke communicatie of urgentie.",
-            "risico": "Weerstand, geruchten, demotivatie.",
-            "framing": "Er is geen sense of urgency gecreëerd.",
-            "interventie": "Gebruik storytelling, leiderschapscommunicatie en concrete voorbeelden."
-        },
-        "Desire": {
-            "gedrag": "Afwachtend gedrag, lage betrokkenheid.",
-            "beleving": "Onveiligheid, weerstand.",
-            "oorzaak": "Angst voor verlies, geen persoonlijke relevantie.",
-            "risico": "Passieve sabotage, energielek.",
-            "framing": "De intrinsieke motivatie ontbreekt.",
-            "interventie": "Organiseer luistersessies, benut peer-influence en laat voordelen zien."
-        },
-        "Knowledge": {
-            "gedrag": "Gebrek aan praktische toepassing of vragen.",
-            "beleving": "Overweldigd, onzeker.",
-            "oorzaak": "Te abstract, geen praktijkkoppeling.",
-            "risico": "Uitstel, afhankelijkheid, afhaken.",
-            "framing": "Informatie is geen kennis.",
-            "interventie": "Gebruik praktijkvoorbeelden, korte leermomenten en buddy’s."
-        },
-        "Ability": {
-            "gedrag": "Moeite met uitvoeren ondanks kennis.",
-            "beleving": "Frustratie, onzekerheid.",
-            "oorzaak": "Geen oefenruimte, druk of complexiteit.",
-            "risico": "Terugval of burn-outsignalen.",
-            "framing": "Veranderen vereist veilig oefenen.",
-            "interventie": "Bied begeleiding, oefenmomenten en ruimte voor fouten."
-        },
-        "Reinforcement": {
-            "gedrag": "Terugval naar oude gedragspatronen.",
-            "beleving": "Cynisme, afvlakking.",
-            "oorzaak": "Geen opvolging of erkenning.",
-            "risico": "Verlies van momentum, terugval.",
-            "framing": "Zonder borging is verandering tijdelijk.",
-            "interventie": "Implementeer rituelen, feedbackrondes en voorbeeldgedrag."
-        }
+# --- Visual ---
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(
+    r=list(scores.values()),
+    theta=list(scores.keys()),
+    fill='toself',
+    name='Huidige score',
+    line=dict(color='royalblue')
+))
+fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 5])), showlegend=False, height=450)
+st.plotly_chart(fig, use_container_width=True)
+
+# --- Analyse ---
+st.subheader("🔎 Analyse per domein")
+for domein, score in scores.items():
+    gedrag, oorzaak, interventie = interpret_score(domein, score)
+    st.markdown(f"**{domein} ({score:.1f})**")
+    st.markdown(f"- **Gedragssignaal:** {gedrag}")
+    st.markdown(f"- **Oorzaak:** {oorzaak}")
+    st.markdown(f"- **Aanpak:** {interventie}")
+    st.markdown("---")
+
+# --- Roadmap ---
+st.subheader("📍 Focusadvies")
+min_domein = min(scores, key=scores.get)
+st.info(f"Start met het domein **{min_domein}**, dat met een score van {scores[min_domein]:.1f} de meeste aandacht vereist.")
+
+# --- Export ---
+if st.button("💾 Download resultaten (.json)"):
+    result = {
+        "session_name": session_name,
+        "timestamp": datetime.datetime.now().isoformat(),
+        "doelgroep": doelgroep,
+        "change_type": change_type,
+        "scores": scores
     }
-
-    # Radar chart
-    categories = list(adkar_scores.keys())
-    values = list(adkar_scores.values()) + [list(adkar_scores.values())[0]]
-    categories += categories[:1]
-
-    fig = go.Figure(data=[go.Scatterpolar(r=values, theta=categories, fill='toself', name='Huidige Scan')])
-
-    if compare_upload:
-        compare_data = json.load(compare_upload)
-        compare_scores = compare_data.get("scores", {})
-        if compare_scores:
-            compare_values = list(compare_scores.values()) + [list(compare_scores.values())[0]]
-            fig.add_trace(go.Scatterpolar(r=compare_values, theta=categories, fill='none', name='Vergelijking'))
-
-    fig.update_layout(title="ADKAR Radar Profiel", polar=dict(radialaxis=dict(visible=True, range=[0, 5])), showlegend=True)
-    st.plotly_chart(fig, use_container_width=True)
-
-    # Diepgaande analyse
-    st.header("🔎 Diepgaande Analyse per Domein")
-    for factor, score in adkar_scores.items():
-        st.subheader(f"📌 {factor} — Score: {score}/5.0")
-        if score < 2:
-            kleur = "❗️"
-        elif score < 3.5:
-            kleur = "⚠️"
-        else:
-            kleur = "✅"
-
-        data = adkar_info[factor]
-        st.markdown(f"**{kleur} Gedrag:** {data['gedrag']}")
-        st.markdown(f"**🧠 Beleving:** {data['beleving']}")
-        st.markdown(f"**📌 Oorzaak:** {data['oorzaak']}")
-        st.markdown(f"**🚨 Risico:** {data['risico']}")
-        st.markdown(f"**🧭 Veranderkundige framing:** *{data['framing']}*")
-        st.markdown(f"**💡 Interventies:** {data['interventie']}")
-
-    average = sum(adkar_scores.values()) / 5
-    st.subheader("🧭 Samenvattend advies")
-    if average < 3:
-        st.error("🚨 Lage veranderrijpheid. Meerdere domeinen vereisen actie.")
-    elif average < 4:
-        st.warning("⚠️ Redelijke basis. Verbeteracties aanbevolen in zwakkere domeinen.")
-    else:
-        st.success("✅ Goede veranderrijpheid. Versterk en borg bestaande kracht.")
-
-    weakest = min(adkar_scores, key=adkar_scores.get)
-    st.markdown(f"**➡️ Start je roadmap bij:** {weakest} — dit domein scoort het laagst.")
-
-    st.markdown("""
-    ### 🔄 Aanbevolen Fasen:
-    1. **Bewustwording vergroten** (Awareness)
-    2. **Motivatie stimuleren** (Desire)
-    3. **Kennisontwikkeling organiseren** (Knowledge)
-    4. **Oefen- en begeleidingsruimte creëren** (Ability)
-    5. **Verankeren in gedrag, beleid en systemen** (Reinforcement)
-    """)
-
-    export_data = {
-        "sessie": session_name,
-        "timestamp": datetime.now().isoformat(),
-        "scores": adkar_scores,
-        "context": context,
-        "doelgroep": doelgroep
-    }
-    json_str = json.dumps(export_data, indent=2)
-    st.download_button("💾 Download sessie (.json)", data=json_str, file_name=f"{session_name}.json", mime="application/json")
+    st.download_button(
+        label="Download JSON",
+        file_name=f"{session_name.replace(' ', '_')}.json",
+        mime="application/json",
+        data=json.dumps(result, indent=2)
+    )
