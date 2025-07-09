@@ -178,6 +178,38 @@ for domain in ADKAR_DOMAINS:
         }
     }
 
+# === VISUALISATIES ===
+st.subheader("📊 Visuele weergave van ADKAR-profiel")
+
+# Extract scores
+labels = list(results.keys())
+scores = [results[domain]["score"] for domain in labels]
+
+# === Radar Chart ===
+st.markdown("**Radar Chart – Profieloverzicht**")
+
+# Setup radar chart
+angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
+scores += scores[:1]  # sluit de cirkel
+angles += angles[:1]
+
+fig_radar, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+ax.plot(angles, scores, color='blue', linewidth=2)
+ax.fill(angles, scores, color='skyblue', alpha=0.4)
+ax.set_yticklabels([])
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(labels)
+ax.set_title("ADKAR Readiness Radar", fontsize=14, pad=20)
+st.pyplot(fig_radar)
+
+# === Bar Chart ===
+st.markdown("**Bar Chart – Score per Domein**")
+fig_bar, ax = plt.subplots(figsize=(8, 4))
+ax.bar(labels, scores[:-1], color='skyblue')
+ax.set_ylim(0, 5)
+ax.set_ylabel("Score")
+ax.set_title("ADKAR Domeinscores")
+st.pyplot(fig_bar)
 # ====== PDF export functie =======
 def generate_pdf(results):
     pdf = FPDF()
@@ -213,36 +245,5 @@ if st.button("Download resultaat als JSON"):
     import matplotlib.pyplot as plt
 import numpy as np
 
-# === VISUALISATIES ===
-st.subheader("📊 Visuele weergave van ADKAR-profiel")
 
-# Extract scores
-labels = list(results.keys())
-scores = [results[domain]["score"] for domain in labels]
-
-# === Radar Chart ===
-st.markdown("**Radar Chart – Profieloverzicht**")
-
-# Setup radar chart
-angles = np.linspace(0, 2 * np.pi, len(labels), endpoint=False).tolist()
-scores += scores[:1]  # sluit de cirkel
-angles += angles[:1]
-
-fig_radar, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-ax.plot(angles, scores, color='blue', linewidth=2)
-ax.fill(angles, scores, color='skyblue', alpha=0.4)
-ax.set_yticklabels([])
-ax.set_xticks(angles[:-1])
-ax.set_xticklabels(labels)
-ax.set_title("ADKAR Readiness Radar", fontsize=14, pad=20)
-st.pyplot(fig_radar)
-
-# === Bar Chart ===
-st.markdown("**Bar Chart – Score per Domein**")
-fig_bar, ax = plt.subplots(figsize=(8, 4))
-ax.bar(labels, scores[:-1], color='skyblue')
-ax.set_ylim(0, 5)
-ax.set_ylabel("Score")
-ax.set_title("ADKAR Domeinscores")
-st.pyplot(fig_bar)
 
