@@ -175,10 +175,7 @@ change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is
 
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
-    # 👇 Grote custom titel boven de expander
-    st.markdown(f"<h2 style='margin-bottom: 0.2rem; font-size: 2rem;'>🔍 {domain}</h2>", unsafe_allow_html=True)
-
-    with st.expander(" "):  # Expander zonder zichtbare titel
+    with st.expander(f"🔍 {domain}"):
         score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
 
         # 🧠 Bepaal juiste label op basis van score
