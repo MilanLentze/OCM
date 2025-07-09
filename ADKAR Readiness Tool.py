@@ -315,6 +315,7 @@ with st.container():
         (4.0, 5.0): "🟢 De nieuwe cultuur wordt zichtbaar in gedrag en houding. Medewerkers herkennen de kernwaarden en passen die toe in samenwerking. Wel is voortdurende versterking en voorbeeldgedrag van leiders nodig.",
     (5.0): "🟢 De gewenste cultuur is vanzelfsprekend geworden. Waarden zijn voelbaar in taal, gedrag en besluitvorming. Medewerkers houden elkaar verantwoordelijk en zijn trots op de gedeelde identiteit van de organisatie."
     },
+    }
         
     # === 4. Lay-out in kolommen
     left_col, right_col = st.columns([1.2, 1])
