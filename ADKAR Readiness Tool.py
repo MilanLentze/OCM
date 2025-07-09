@@ -186,7 +186,7 @@ for domain in ADKAR_DOMAINS:
         if domain in FEEDBACK_MATRIX:
             for (low, high), types in FEEDBACK_MATRIX[domain].items():
                 if low <= score <= high:
-                    feedback = types.get(change_type.lower(), ("", "", ""))
+                    feedback = types.get(change_type, ("", "", ""))
                     break
 
         # 💬 Toon alles netjes in HTML-box
