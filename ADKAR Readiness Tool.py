@@ -13,12 +13,18 @@ st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 st.markdown(
     """
     <style>
-    .streamlit-expanderHeader {
+    /* Expander-header forceren met bredere selector */
+    div[data-testid="stExpander"] > details > summary {
         font-size: 1.8rem !important;
         font-weight: 800 !important;
         padding-top: 0.8rem !important;
         padding-bottom: 0.8rem !important;
-        color: #333333;
+        color: #222 !important;
+    }
+
+    /* Extra: ruimte onder expander */
+    div[data-testid="stExpander"] {
+        margin-bottom: 1.5rem;
     }
     </style>
     """,
