@@ -270,7 +270,7 @@ fig_gauge = go.Figure(go.Indicator(
             ],
         }
     ))
-    fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
+fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 
     # === 2. Radar chart
 labels = ADKAR_DOMAINS.copy()
