@@ -166,9 +166,9 @@ change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is
 
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
-    with st.expander(""):  # Expander zonder titel
+    with st.expander(""):
         st.markdown(f"<h4 style='margin-top: 0;'>📊 Score voor {domain}</h4>", unsafe_allow_html=True)
-        score = st.slider(f"", 1.0, 5.0, step=0.1)
+        score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
 
         # 🧠 Bepaal juiste label op basis van score
         if 1.0 <= score <= 1.9:
