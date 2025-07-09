@@ -167,7 +167,7 @@ change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
     with st.expander(f"🔍 {domain}"):
-    score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
+score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
 
 
         # 🧠 Bepaal juiste label op basis van score
