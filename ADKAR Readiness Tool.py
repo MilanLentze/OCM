@@ -202,8 +202,8 @@ for domain in ADKAR_DOMAINS:
         st.markdown(
     f"""
     <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
-        <h5 style="margin-bottom: 0.8rem;">{score:.1f} – {status_label}</h5>
-        <p style="margin-bottom: 0.6rem;"><strong>Type verandering:</strong> {change_type.capitalize()}</p>
+        <h5 style="margin-bottom: 0.8rem;">{status_label}</h5>
+        <p style="margin-bottom: 0.4rem;"><strong>Type verandering:</strong> {change_type.capitalize()}</p>
         <hr style="margin: 1rem 0;">
         <p style="margin-bottom: 0.8rem;"><strong>📍 Mogelijk gedragssignaal:</strong><br>{feedback[0]}</p>
         <p style="margin-bottom: 0.8rem;"><strong>💡 Mogelijke oorzaak:</strong><br>{feedback[1]}</p>
