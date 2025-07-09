@@ -242,18 +242,6 @@ fig.update_layout(
 )
 st.plotly_chart(fig, use_container_width=True)
 
-# === Bar Chart (Matplotlib) ===
-st.subheader("📈 Score per Domein")
-fig_bar, ax = plt.subplots(figsize=(8, 4))
-bar_labels = ADKAR_DOMAINS
-bar_scores = [results[d]["score"] for d in bar_labels]
-colors = [DOMAIN_COLORS[d] for d in bar_labels]
-ax.bar(bar_labels, bar_scores, color=colors)
-ax.set_ylim(0, 5)
-ax.set_ylabel("Score")
-ax.set_title("ADKAR Domeinscores")
-st.pyplot(fig_bar)
-
 # === PDF Export ===
 def generate_pdf(results):
     pdf = FPDF()
