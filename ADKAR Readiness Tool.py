@@ -191,19 +191,19 @@ for domain in ADKAR_DOMAINS:
 
         # 💬 Toon alles netjes in HTML-box
         st.markdown(
-            f"""
-            <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
-                <h5 style="margin-bottom: 0.5rem;">{domain} – {status_label}</h5>
-                <p style="margin: 0.2rem 0;"><strong>🔢 Score:</strong> {score:.1f}</p>
-                <p style="margin: 0.2rem 0;"><strong>🔧 Type verandering:</strong> {change_type.capitalize()}</p>
-                <hr style="margin: 0.7rem 0;">
-                <p style="margin: 0.2rem 0;"><strong>📍 Mogelijk gedragssignaal:</strong><br>{feedback[0]}</p>
-                <p style="margin: 0.2rem 0;"><strong>💡 Mogelijke oorzaak:</strong><br>{feedback[1]}</p>
-                <p style="margin: 0.2rem 0;"><strong>🛠️ Aanpak/interventie:</strong><br>{feedback[2]}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    f"""
+    <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
+        <h5 style="margin-bottom: 0.8rem;">{domain} – {status_label}</h5>
+        <p style="margin-bottom: 0.6rem;"><strong>🔢 Score:</strong> {score:.1f}</p>
+        <p style="margin-bottom: 0.6rem;"><strong>🔧 Type verandering:</strong> {change_type.capitalize()}</p>
+        <hr style="margin: 1rem 0;">
+        <p style="margin-bottom: 0.8rem;"><strong>📍 Mogelijk gedragssignaal:</strong><br>{feedback[0]}</p>
+        <p style="margin-bottom: 0.8rem;"><strong>💡 Mogelijke oorzaak:</strong><br>{feedback[1]}</p>
+        <p style="margin-bottom: 0.8rem;"><strong>🛠️ Aanpak/interventie:</strong><br>{feedback[2]}</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
         # Voeg toe aan resultaten
         results[domain] = {
