@@ -286,32 +286,32 @@ with st.container():
     # === 3. Samenvatting Matrix
     summary_matrix = {
         "Proces": {
-            (1.0, 2.0): "🔴 Weerstand tegen nieuwe processen. Intensieve interventie vereist.",
-            (2.0, 3.0): "🟠 Beperkte acceptatie. Risico op terugval.",
-            (3.0, 4.0): "🟡 Redelijke toepassing, maar niet stabiel.",
-            (4.0, 5.0): "🟢 Goed toegepast, aandacht voor borging.",
-            (5.0,):     "🟢 Volledig geïntegreerd en eigenaarschap aanwezig."
+            (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
+            (2.0, 3.0): "🟠 Er is sprake van beperkte acceptatie. Medewerkers zijn afwachtend en begrijpen het nut van de verandering niet volledig. De nieuwe processen worden mogelijk wel toegepast, maar zonder overtuiging of consistentie. Er is risico op terugval of schijnacceptatie.",
+            (3.0, 4.0): "🟡 De organisatie past de nieuwe processen grotendeels toe, maar nog niet vanzelfsprekend of efficiënt. Er is ruimte voor verbetering in vaardigheid, vertrouwen of motivatie. Zonder aanvullende ondersteuning blijft de verandering kwetsbaar of versnipperd.",
+            (4.0, 5.0): "🟢 De verandering wordt in de meeste delen van de organisatie goed toegepast. Medewerkers zien de meerwaarde en handelen ernaar. Wel is continue versterking nodig om terugval te voorkomen en het gedrag structureel te verankeren.",
+            (5.0,):     "🟢 De procesverandering is volledig geïntegreerd in het dagelijks werk. Medewerkers tonen eigenaarschap, passen de processen proactief toe en verbeteren ze zelfs waar mogelijk. De organisatie functioneert aantoonbaar beter op basis van de nieuwe werkwijzen."
         },
         "Technologie": {
-            (1.0, 2.0): "🔴 Weerstand tegen tools. Angst en frustratie overheersen.",
-            (2.0, 3.0): "🟠 Onzeker gebruik. Lage vaardigheid.",
-            (3.0, 4.0): "🟡 Basisgebruik, maar inefficiënt.",
-            (4.0, 5.0): "🟢 Functioneel gebruik. Meer borging nodig.",
-            (5.0,):     "🟢 Volledig geïntegreerde tool, proactief gebruik."
+            (1.0, 2.0): "🔴 De organisatie kampt met weerstand tegen het nieuwe systeem of tool. Medewerkers vermijden gebruik, tonen frustratie en ervaren onzekerheid of angst. De verandering ondermijnt productiviteit en levert risico’s op voor fouten of inefficiëntie.",
+            (2.0, 3.0): "🟠 De technologie wordt met moeite toegepast. Medewerkers gebruiken de tool alleen wanneer het moet, vaak met fouten of inefficiëntie. Er is een duidelijke kloof in vaardigheden en vertrouwen, waardoor draagvlak ontbreekt.",
+            (3.0, 4.0): "🟡 Het systeem wordt grotendeels gebruikt, maar niet optimaal. Medewerkers kennen de basis, maar benutten de technologie niet efficiënt. Er is risico op suboptimaal gebruik en frustratie bij complexere taken.",
+            (4.0, 5.0): "🟢 De technologie wordt functioneel en met vertrouwen gebruikt. Medewerkers zien het voordeel, werken er dagelijks mee en helpen collega’s. Borging en optimalisatie zijn nodig om het gebruik structureel en toekomstbestendig te maken.",
+            (5.0,):     "🟢 De technologie is vanzelfsprekend onderdeel van het werk. Medewerkers benutten het systeem effectief, denken mee over verbetering en dragen actief bij aan innovatie of opschaling."
         },
         "Structuur": {
-            (1.0, 2.0): "🔴 Chaos of verzet. Rollen onduidelijk.",
-            (2.0, 3.0): "🟠 Formele structuur, geen draagvlak.",
-            (3.0, 4.0): "🟡 Inconsistente toepassing van structuur.",
-            (4.0, 5.0): "🟢 Nieuwe structuur grotendeels geaccepteerd.",
-            (5.0,):     "🟢 Efficiënt, wendbaar, heldere rolverdeling."
+            (1.0, 2.0): "🔴 De organisatie ervaart chaos of weerstand. Medewerkers begrijpen hun nieuwe rol niet of verzetten zich tegen verlies van status, teamverband of duidelijkheid. Dit leidt tot verminderde samenwerking en risico op interne frictie.",
+            (2.0, 3.0): "🟠 De structuur is formeel aangepast, maar wordt nog niet begrepen of gedragen. Er is verwarring over verantwoordelijkheden, besluitvorming en positionering. Dit belemmert de effectiviteit van teams en leiderschap.",
+            (3.0, 4.0): "🟡 Er is een begin van structuuracceptatie, maar inconsistentie in toepassing en gedrag. Sommige teams functioneren volgens de nieuwe lijnen, anderen vallen terug in oude patronen. Er is behoefte aan heldere rolduiding en alignment.",
+            (4.0, 5.0): "🟢 De nieuwe structuur wordt grotendeels gevolgd en medewerkers nemen hun rol serieus. Wel zijn er nog vragen of onduidelijkheden bij cross-functionele samenwerking of escalatiepunten. Stabilisatie is nodig.",
+            (5.0,):     "🟢 De structuur is volledig geïntegreerd. Rollen, mandaten en samenwerking zijn helder en efficiënt. De organisatie is wendbaar en medewerkers opereren met vertrouwen binnen hun nieuwe context."
         },
         "Cultuur": {
-            (1.0, 2.0): "🔴 Verwerping cultuurverandering. Informele normen overheersen.",
-            (2.0, 3.0): "🟠 Schijnacceptatie. Oude patronen blijven bestaan.",
-            (3.0, 4.0): "🟡 Bereidheid, maar inconsistent gedrag.",
-            (4.0, 5.0): "🟢 Cultuur merkbaar aanwezig. Leiderschap cruciaal.",
-            (5.0,):     "🟢 Cultuur volledig verankerd in gedrag en waarden."
+            (1.0, 2.0): "🔴 De cultuurverandering wordt verworpen of genegeerd. Medewerkers geloven niet in de gewenste waarden of zien deze als onrealistisch of top-down opgelegd. Informele normen ondermijnen de gewenste gedragsverandering.",
+            (2.0, 3.0): "🟠 De nieuwe cultuur wordt met scepsis bekeken. Medewerkers volgen formeel het gewenste gedrag, maar geloven er niet in. Oud gedrag wordt in stand gehouden via informele patronen of voorbeeldgedrag van leiders.",
+            (3.0, 4.0): "🟡 De organisatie spreekt de nieuwe waarden uit, maar in gedrag is de verandering nog niet consistent zichtbaar. Er is bereidheid, maar ook onzekerheid over wat het concreet betekent. Cultuurverandering blijft oppervlakkig.",
+            (4.0, 5.0): "🟢 De nieuwe cultuur wordt zichtbaar in gedrag en houding. Medewerkers herkennen de kernwaarden en passen die toe in samenwerking. Wel is voortdurende versterking en voorbeeldgedrag van leiders nodig.",
+            (5.0,):     "🟢 De gewenste cultuur is vanzelfsprekend geworden. Waarden zijn voelbaar in taal, gedrag en besluitvorming. Medewerkers houden elkaar verantwoordelijk en zijn trots op de gedeelde identiteit van de organisatie."
         }
     }
 
