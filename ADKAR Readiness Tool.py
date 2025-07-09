@@ -205,7 +205,7 @@ else:
         )
 
         # Voeg toe aan resultaten
-        results[domain] = {
+    results[domain] = {
             "score": score,
             "type": change_type,
             "feedback": {
