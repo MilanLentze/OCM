@@ -189,7 +189,7 @@ else:
     status_label = "✅ Score 5.0: Uitstekend"
 
         # Toon output in visueel nette box
-        st.markdown(
+    st.markdown(
             f"""
             <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
                 <h5 style="margin-bottom: 0.5rem;">{domain} – {status_label}</h5>
