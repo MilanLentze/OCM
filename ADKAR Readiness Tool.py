@@ -167,6 +167,7 @@ for domain in ADKAR_DOMAINS:
         score = st.slider(f"Score voor {domain}", 1.0, 5.0, step=0.1)
         change_type = st.selectbox(f"Type verandering voor {domain}", CHANGE_TYPES, key=domain)
 
+        # Zoek feedback
         feedback = ("", "", "")
         if domain in FEEDBACK_MATRIX:
             for (low, high), types in FEEDBACK_MATRIX[domain].items():
@@ -174,21 +175,23 @@ for domain in ADKAR_DOMAINS:
                     feedback = types.get(change_type, ("", "", ""))
                     break
 
-# Label per score
-if score < 2.5:
-    status_label = "⚠️ Knelpunt"
-elif score < 3.5:
-    status_label = "🟠 Matig"
-else:
-    status_label = "✅ Sterk domein"
+        # Label per score
+        if score < 2.5:
+            status_label = "⚠️ Knelpunt"
+        elif score < 3.5:
+            status_label = "🟠 Matig"
+        else:
+            status_label = "✅ Sterk domein"
 
-with st.expander(f"{domain} – {status_label}", expanded=True):
-    st.markdown(f"**Score:** {score}  \n**Type verandering:** {change_type}")
-    st.markdown(f"**Gedragssignaal:** {feedback[0]}")
-    st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
-    st.markdown(f"**Aanpak/interventie:** {feedback[2]}")
+        # Toon output in expander
+        st.markdown(f"### {domain} – {status_label}")
+        st.markdown(f"**Score:** {score}  \n**Type verandering:** {change_type}")
+        st.markdown(f"**Gedragssignaal:** {feedback[0]}")
+        st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
+        st.markdown(f"**Aanpak/interventie:** {feedback[2]}")
 
-results[domain] = {
+        # Voeg toe aan resultaten
+        results[domain] = {
             "score": score,
             "type": change_type,
             "feedback": {
@@ -197,6 +200,7 @@ results[domain] = {
                 "intervention": feedback[2]
             }
         }
+
 
 # === Gemiddelde Score ===
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
