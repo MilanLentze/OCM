@@ -121,11 +121,5 @@ with col1:
         with open(pdf_file.name, "rb") as f:
             st.download_button("Klik hier om te downloaden", f, file_name="adkar_resultaat.pdf", mime="application/pdf")
 
-with col2:
-    if st.button("💾 Download JSON"):
-        st.download_button(
-            label="Klik hier om te downloaden",
-            data=json.dumps(results, indent=2),
-            file_name="adkar_resultaat.json",
-            mime="application/json"
+
         )
