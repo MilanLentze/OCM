@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="ADKAR Readiness Profiel", layout="wide")
 st.title("📊 ADKAR Readiness Profiel Tool")
-st.markdown("**Powered by Milan Lentze – AI Change Design**")
+st.markdown("**Powered by Milan Lentze – OCM Design**")
 
 st.markdown("""
 Deze tool helpt je om de veranderbereidheid van een team of organisatie in kaart te brengen aan de hand van het ADKAR-model.
