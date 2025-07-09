@@ -235,9 +235,8 @@ st.markdown(" ")
 with st.container():
     st.markdown(
         """
-        <div style="background-color: #f2f2f2; padding: 30px 25px 25px 25px; border-radius: 10px; margin-top: 50px;">
+        <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
             <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
-        </div>
         """,
         unsafe_allow_html=True
     )
@@ -304,14 +303,22 @@ with st.container():
     with right_col:
         st.markdown(
             """
-            <div style="padding: 10px 15px;">
-                <h4>🧠 AI Samenvatting</h4>
-                <p style="font-size: 16px;">""" + summary_text + """</p>
+            <div style="padding: 10px 20px;">
+                <h4>ADKAR Samenvatting</h4>
+                <p style="font-size: 20px;">""" + summary_text + """</p>
             </div>
             """,
             unsafe_allow_html=True
         )
 
+    # Sluit container div (HTML)
+    st.markdown("</div>", unsafe_allow_html=True)
+    
+# === Witruimte boven de titel
+st.markdown(" ")
+st.markdown(" ")
+st.markdown(" ")
+st.markdown(" ")
 
 # === PDF Export ===
 def generate_pdf(results):
