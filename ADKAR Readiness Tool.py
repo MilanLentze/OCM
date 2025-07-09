@@ -142,6 +142,7 @@ FEEDBACK_MATRIX = {
         "cultuur": ("Nieuwe cultuur gedragen door iedereen", "Gedrag is onbewust congruent", "Koester cultuurdragers, onboarding verankeren")
     }
 }
+}
 
 # ====== Interface =======
 st.title("ADKAR Readiness Analyse v2.0")
