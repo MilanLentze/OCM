@@ -233,13 +233,23 @@ st.markdown(" ")
 
 # === ADKAR Profieloverzicht Blok ===
 with st.container():
+    # Grijze achtergrond instellen via st.markdown met CSS (op container zelf)
     st.markdown(
         """
-        <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
-        <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
+        <style>
+        .gray-box {
+            background-color: #f2f2f2;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        </style>
+        <div class="gray-box">
         """,
         unsafe_allow_html=True
     )
+
+      st.markdown("### 📊 ADKAR Profieloverzicht")
 
     # Bereken gemiddelde
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
