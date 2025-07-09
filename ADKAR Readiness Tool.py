@@ -38,7 +38,35 @@ FEEDBACK_MATRIX = {
             "cultuur": ("Voelt zich verbonden met de gewenste cultuur", "Herkenning in waarden en gedrag", "Cultuurdragers versterken, storytelling")
         }
     },
-    # De overige domeinen (Desire, Knowledge, Ability, Reinforcement) worden op dezelfde manier ingevoegd
+    "Desire": {
+        (1.0, 1.9): {
+            "proces": ("Actieve weerstand of passieve sabotering", "Geen zeggenschap over procesverandering", "Invloed geven, weerstand normaliseren"),
+            "technologie": ("Technofobie of afhakend gedrag", "Angst voor controleverlies of fouten", "Peer influence, laten ervaren van gemak"),
+            "structuur": ("Ontkenning of terugtrekken", "Onzekerheid over toekomstpositie", "Transparant zijn over implicaties en keuzeruimte"),
+            "cultuur": ("Cynisme of terugverlangen naar oude cultuur", "Verlies van identiteit of waarden", "Erkenning van emoties, dialoog op waarden")
+        },
+        (2.0, 2.9): {
+            "proces": ("Afstandelijke houding", "Niet overtuigd van nut of urgentie", "Betrekken bij herontwerp, show quick wins"),
+            "technologie": ("Sceptisch of onverschillig", "Geen vertrouwen in nut van tool", "Koppelen aan werkplezier of gemak"),
+            "structuur": ("Passief volgen", "Zien reorganisatie als opgelegd", "Verbind met persoonlijke impact en groeikansen"),
+            "cultuur": ("Neutraal, niet betrokken", "Verandering voelt extern of abstract", "Inspirerende verhalen en leiderschap zichtbaar maken")
+        },
+        (3.0, 3.9): {
+            "proces": ("Voorzichtig meewerkend", "Nog weinig emotionele connectie", "Successen delen, ruimte voor invloed geven"),
+            "technologie": ("Mee eens, maar geen ambassadeur", "Onzekerheid of gewenning ontbreekt", "Gamified adoptie, ervaringssessies"),
+            "structuur": ("Mee eens mits goed uitgelegd", "Er zijn zorgen, maar wel openheid", "Visie koppelen aan dagelijkse rol"),
+            "cultuur": ("Mee in woorden, nog niet in gedrag", "Onzeker over nieuwe normen", "Voorbeelden zichtbaar maken, belonen gewenst gedrag")
+        },
+        (4.0, 5.0): {
+            "proces": ("Actieve medewerking en initiatief", "Herkenning van waarde en nut", "Geef podium, rolmodelgedrag stimuleren"),
+            "technologie": ("Promoot tool spontaan", "Ervaring positief, wil delen", "Laat ambassadeurs trainen en supporten"),
+            "structuur": ("Draagt reorganisatie", "Snapt strategisch nut", "Laat hen nieuwe structuren co-designen"),
+            "cultuur": ("Belichaamt nieuwe cultuur", "Verbinding met waarden en doelen", "Versterk met storytelling en peer influence")
+        }
+    },
+    "Knowledge": {},
+    "Ability": {},
+    "Reinforcement": {}
 }
 
 # ====== Interface =======
@@ -54,10 +82,11 @@ for domain in ADKAR_DOMAINS:
 
     # Zoek feedback
     feedback = ("", "", "")
-    for (low, high), types in FEEDBACK_MATRIX[domain].items():
-        if low <= score <= high:
-            feedback = types.get(change_type, ("", "", ""))
-            break
+    if domain in FEEDBACK_MATRIX:
+        for (low, high), types in FEEDBACK_MATRIX.get(domain, {}).items():
+            if low <= score <= high:
+                feedback = types.get(change_type, ("", "", ""))
+                break
 
     st.markdown(f"**Gedragssignaal:** {feedback[0]}")
     st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
