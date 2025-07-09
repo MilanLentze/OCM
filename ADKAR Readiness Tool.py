@@ -145,8 +145,8 @@ FEEDBACK_MATRIX = {
 }
 
 # ====== Interface =======
-st.title("ADKAR Readiness Analyse v2.0")
-st.markdown("Voer per domein een score in en selecteer het type verandering.")
+st.title("ADKAR Scan Analyse")
+st.markdown("Voer per domein een score in en selecteer het type verandering voor een hoogover inschatting van gedragssignalen, mogelijke oorzaken en mogelijke interventies.")
 
 results = {}
 
