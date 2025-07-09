@@ -12,7 +12,7 @@ st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 st.markdown("""
     <style>
     details summary {
-        font-size: 1.5rem !important;
+        font-size: 3rem !important;
         font-weight: 800 !important;
     }
     </style>
