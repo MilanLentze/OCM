@@ -171,15 +171,15 @@ for domain in ADKAR_DOMAINS:
 
         # 🧠 Bepaal juiste label op basis van score
         if 1.0 <= score <= 1.9:
-            status_label = "🔴 Score 1.0–1.9: Zeer laag"
+            status_label = "🔴 Score: Zeer laag"
         elif 2.0 <= score <= 2.9:
-            status_label = "🟠 Score 2.0–2.9: Laag"
+            status_label = "🟠 Score: Laag"
         elif 3.0 <= score <= 3.9:
-            status_label = "🟡 Score 3.0–3.9: Gemiddeld"
+            status_label = "🟡 Score: Gemiddeld"
         elif 4.0 <= score <= 4.9:
-            status_label = "🟢 Score 4.0–4.9: Sterk"
+            status_label = "🟢 Score: Sterk"
         else:
-            status_label = "✅ Score 5.0: Uitstekend"
+            status_label = "✅ Score: Uitstekend"
 
         # 🔍 Haal feedback op uit matrix
         feedback = ("", "", "")
