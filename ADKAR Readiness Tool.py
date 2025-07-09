@@ -389,6 +389,13 @@ with right_col:
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown(f"""
+    <div style='background-color: #f2f2f2; padding: 20px; border-radius: 10px; margin-top: 20px;'>
+        <strong>🎯 Interventieadvies</strong>
+        <p style='font-size: 16px; color: black;'>{intervention_text}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
 # === Witruimte boven de titel
 st.markdown(" ")
 st.markdown(" ")
