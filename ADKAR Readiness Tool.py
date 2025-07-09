@@ -318,7 +318,7 @@ with st.container():
         }
 
     # Hulp: juiste tekst ophalen
-    def get_summary(avg_score, change_type):
+def get_summary(avg_score, change_type):
     for key in summary_matrix[change_type]:
         if len(key) == 1 and avg_score == key[0]:
             return summary_matrix[change_type][key]
