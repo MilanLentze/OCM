@@ -2,6 +2,8 @@
 
 import streamlit as st
 import json
+from fpdf import FPDF
+import tempfile
 
 # ====== Functies per ADKAR-domein =======
 
@@ -36,7 +38,7 @@ FEEDBACK_MATRIX = {
             "cultuur": ("Voelt zich verbonden met de gewenste cultuur", "Herkenning in waarden en gedrag", "Cultuurdragers versterken, storytelling")
         }
     },
-    # De overige domeinen (Desire, Knowledge, Ability, Reinforcement) worden op dezelfde manier ingevoegd (zie vorige stappen in chat)
+    # De overige domeinen (Desire, Knowledge, Ability, Reinforcement) worden op dezelfde manier ingevoegd
 }
 
 # ====== Interface =======
@@ -71,7 +73,31 @@ for domain in ADKAR_DOMAINS:
         }
     }
 
-# ====== Download knop =======
+# ====== PDF export functie =======
+def generate_pdf(results):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, txt="ADKAR Readiness Analyse Resultaat", ln=True, align='C')
+    pdf.ln(10)
+
+    for domain, data in results.items():
+        pdf.set_font("Arial", style='B', size=12)
+        pdf.cell(200, 10, txt=f"{domain}", ln=True)
+        pdf.set_font("Arial", size=11)
+        pdf.multi_cell(0, 10, txt=f"Score: {data['score']}\nType: {data['type']}\nGedragssignaal: {data['feedback']['signal']}\nOorzaak: {data['feedback']['cause']}\nInterventie: {data['feedback']['intervention']}")
+        pdf.ln(5)
+
+    tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+    pdf.output(tmp_file.name)
+    return tmp_file
+
+# ====== Download knoppen =======
+if st.button("Download resultaat als PDF"):
+    pdf_file = generate_pdf(results)
+    with open(pdf_file.name, "rb") as f:
+        st.download_button("Klik hier om PDF te downloaden", f, file_name="adkar_resultaat.pdf", mime="application/pdf")
+
 if st.button("Download resultaat als JSON"):
     st.download_button(
         label="Klik hier om te downloaden",
