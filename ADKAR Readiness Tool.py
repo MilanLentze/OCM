@@ -255,7 +255,7 @@ st.markdown("### 📊 ADKAR Profieloverzicht")
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
     # === 1. Gauge chart
-    fig_gauge = go.Figure(go.Indicator(
+fig_gauge = go.Figure(go.Indicator(
         mode="gauge+number",
         value=avg_score,
         title={'text': "Gemiddelde ADKAR-score"},
@@ -273,7 +273,7 @@ avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
     fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 
     # === 2. Radar chart
-    labels = ADKAR_DOMAINS.copy()
+labels = ADKAR_DOMAINS.copy()
     scores = [results[d]["score"] for d in labels]
     scores += scores[:1]
     labels += labels[:1]
