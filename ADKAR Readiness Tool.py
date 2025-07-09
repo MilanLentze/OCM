@@ -188,6 +188,21 @@ for domain in ADKAR_DOMAINS:
             }
         }
 
+    # ===== Statuslabel toevoegen =====
+    status = ""
+    if score < 2.0:
+        status = "🔴 Zeer Laag"
+    elif score < 3.0:
+        status = "🟠 Laag"
+    elif score < 4.0:
+        status = "🟡 Matig"
+    else:
+        status = "🟢 Sterk"
+
+    st.markdown(f"**Statuslabel:** {status}")
+    results[domain]["status"] = status
+
+
 # === Gemiddelde Score ===
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 st.metric("Gemiddelde ADKAR-score", avg_score)
