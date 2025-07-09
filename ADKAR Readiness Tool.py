@@ -6,11 +6,11 @@ from datetime import datetime
 
 st.set_page_config(page_title="ADKAR Readiness Profiel", layout="wide")
 st.title("📊 ADKAR Readiness Profiel Tool")
-st.markdown("**Powered by Milan Lentze – OCM ADKAR Design**")
+st.markdown("**Powered by Milan Lentze – AI Change Design**")
 
 st.markdown("""
 Deze tool helpt je om de veranderbereidheid van een team of organisatie in kaart te brengen aan de hand van het ADKAR-model.
-Vul de score in (1.0–5.0) voor elk domein:
+Vul de score in (1.0–5.0) voor elk domein. De analyse geeft je niet alleen een score, maar ook gedragsinterpretatie, mogelijke oorzaken, risico's en concrete interventies per domein.
 """)
 
 # Contextvelden
@@ -44,14 +44,56 @@ if submitted:
         "Reinforcement": reinforcement
     }
 
-    # Grafiek voorbereiden
+    adkar_info = {
+        "Awareness": {
+            "gedrag": "Vermijden van of onbegrip over het waarom van de verandering.",
+            "beleving": "Vaagheid, onduidelijkheid.",
+            "oorzaak": "Geen persoonlijke communicatie of urgentie.",
+            "risico": "Weerstand, geruchten, demotivatie.",
+            "framing": "Er is geen sense of urgency gecreëerd.",
+            "interventie": "Gebruik storytelling, leiderschapscommunicatie en concrete voorbeelden."
+        },
+        "Desire": {
+            "gedrag": "Afwachtend gedrag, lage betrokkenheid.",
+            "beleving": "Onveiligheid, weerstand.",
+            "oorzaak": "Angst voor verlies, geen persoonlijke relevantie.",
+            "risico": "Passieve sabotage, energielek.",
+            "framing": "De intrinsieke motivatie ontbreekt.",
+            "interventie": "Organiseer luistersessies, benut peer-influence en laat voordelen zien."
+        },
+        "Knowledge": {
+            "gedrag": "Gebrek aan praktische toepassing of vragen.",
+            "beleving": "Overweldigd, onzeker.",
+            "oorzaak": "Te abstract, geen praktijkkoppeling.",
+            "risico": "Uitstel, afhankelijkheid, afhaken.",
+            "framing": "Informatie is geen kennis.",
+            "interventie": "Gebruik praktijkvoorbeelden, korte leermomenten en buddy’s."
+        },
+        "Ability": {
+            "gedrag": "Moeite met uitvoeren ondanks kennis.",
+            "beleving": "Frustratie, onzekerheid.",
+            "oorzaak": "Geen oefenruimte, druk of complexiteit.",
+            "risico": "Terugval of burn-outsignalen.",
+            "framing": "Veranderen vereist veilig oefenen.",
+            "interventie": "Bied begeleiding, oefenmomenten en ruimte voor fouten."
+        },
+        "Reinforcement": {
+            "gedrag": "Terugval naar oude gedragspatronen.",
+            "beleving": "Cynisme, afvlakking.",
+            "oorzaak": "Geen opvolging of erkenning.",
+            "risico": "Verlies van momentum, terugval.",
+            "framing": "Zonder borging is verandering tijdelijk.",
+            "interventie": "Implementeer rituelen, feedbackrondes en voorbeeldgedrag."
+        }
+    }
+
+    # Radar chart
     categories = list(adkar_scores.keys())
     values = list(adkar_scores.values()) + [list(adkar_scores.values())[0]]
     categories += categories[:1]
 
     fig = go.Figure(data=[go.Scatterpolar(r=values, theta=categories, fill='toself', name='Huidige Scan')])
 
-    # Eventuele vergelijking toevoegen
     if compare_upload:
         compare_data = json.load(compare_upload)
         compare_scores = compare_data.get("scores", {})
@@ -62,20 +104,25 @@ if submitted:
     fig.update_layout(title="ADKAR Radar Profiel", polar=dict(radialaxis=dict(visible=True, range=[0, 5])), showlegend=True)
     st.plotly_chart(fig, use_container_width=True)
 
-    # Analyse per domein
-    st.header("💡 Analyse en Aanbevelingen")
+    # Diepgaande analyse
+    st.header("🔎 Diepgaande Analyse per Domein")
     for factor, score in adkar_scores.items():
-        if score <= 2:
-            st.warning(f"**{factor} ({score}/5):** Kritiek laag. Interventies aanbevolen.")
-            st.markdown("- 👉 Organiseer gerichte sessies / communicatiecampagne")
-            st.markdown("- 👉 Betrek key influencers / ambassadeurs")
-        elif score <= 3.5:
-            st.info(f"**{factor} ({score}/5):** Gemiddeld. Aandachtspunt.")
-            st.markdown("- 🔍 Verdiep in specifieke drempels via dialoog of observatie")
+        st.subheader(f"📌 {factor} — Score: {score}/5.0")
+        if score < 2:
+            kleur = "❗️"
+        elif score < 3.5:
+            kleur = "⚠️"
         else:
-            st.success(f"**{factor} ({score}/5):** Sterk. Hou dit vast en versterk waar nodig.")
+            kleur = "✅"
 
-    # Gemiddelde en roadmap
+        data = adkar_info[factor]
+        st.markdown(f"**{kleur} Gedrag:** {data['gedrag']}")
+        st.markdown(f"**🧠 Beleving:** {data['beleving']}")
+        st.markdown(f"**📌 Oorzaak:** {data['oorzaak']}")
+        st.markdown(f"**🚨 Risico:** {data['risico']}")
+        st.markdown(f"**🧭 Veranderkundige framing:** *{data['framing']}*")
+        st.markdown(f"**💡 Interventies:** {data['interventie']}")
+
     average = sum(adkar_scores.values()) / 5
     st.subheader("🧭 Samenvattend advies")
     if average < 3:
@@ -88,7 +135,6 @@ if submitted:
     weakest = min(adkar_scores, key=adkar_scores.get)
     st.markdown(f"**➡️ Start je roadmap bij:** {weakest} — dit domein scoort het laagst.")
 
-    # Roadmap visualisatie
     st.markdown("""
     ### 🔄 Aanbevolen Fasen:
     1. **Bewustwording vergroten** (Awareness)
@@ -98,7 +144,6 @@ if submitted:
     5. **Verankeren in gedrag, beleid en systemen** (Reinforcement)
     """)
 
-    # Downloadbare sessie
     export_data = {
         "sessie": session_name,
         "timestamp": datetime.now().isoformat(),
