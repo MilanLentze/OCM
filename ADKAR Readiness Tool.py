@@ -236,10 +236,12 @@ with st.container():
     st.markdown(
         """
         <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
-            <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
         """,
         unsafe_allow_html=True
     )
+
+    # Titel bovenin
+    st.markdown("### 📊 ADKAR Profieloverzicht")
 
     # Bereken gemiddelde score
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
@@ -284,15 +286,36 @@ with st.container():
     )
 
     # === 3. AI Samenvatting
-    if avg_score < 2:
-        summary_text = "🔴 De ADKAR-score is zeer laag. Dit suggereert aanzienlijke weerstand of onbekendheid binnen de organisatie. Richt interventies op bewustwording en motivatie."
-    elif avg_score < 3:
-        summary_text = "🟠 De ADKAR-score is aan de lage kant. Hoewel er enige mate van acceptatie lijkt te zijn, is er nog onvoldoende draagvlak of kennis aanwezig voor een succesvolle verandering."
-    elif avg_score < 4:
-        summary_text = "🟡 De ADKAR-score is gemiddeld. De organisatie heeft een redelijk basisniveau van veranderbereidheid, maar er zijn enkele domeinen die aandacht vragen."
-    else:
-        summary_text = "🟢 De ADKAR-score is sterk. Er is een breed draagvlak en voldoende kennis en motivatie aanwezig voor succesvolle verandering."
-
+    summary_matrix = {
+    "Proces": {
+        (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
+        (2.0, 3.0): "🟠 Er is sprake van beperkte acceptatie. Medewerkers zijn afwachtend en begrijpen het nut van de verandering niet volledig. De nieuwe processen worden mogelijk wel toegepast, maar zonder overtuiging of consistentie. Er is risico op terugval of schijnacceptatie.",
+        (3.0, 4.0): "🟡 De organisatie past de nieuwe processen grotendeels toe, maar nog niet vanzelfsprekend of efficiënt. Er is ruimte voor verbetering in vaardigheid, vertrouwen of motivatie. Zonder aanvullende ondersteuning blijft de verandering kwetsbaar of versnipperd.",
+        (4.0, 5.0): "🟢 De verandering wordt in de meeste delen van de organisatie goed toegepast. Medewerkers zien de meerwaarde en handelen ernaar. Wel is continue versterking nodig om terugval te voorkomen en het gedrag structureel te verankeren.",
+        (5.0): "🟢 De procesverandering is volledig geïntegreerd in het dagelijks werk. Medewerkers tonen eigenaarschap, passen de processen proactief toe en verbeteren ze zelfs waar mogelijk. De organisatie functioneert aantoonbaar beter op basis van de nieuwe werkwijzen."
+    },
+    "Technologie": {
+        (1.0, 2.0): "🔴 De organisatie kampt met weerstand tegen het nieuwe systeem of tool. Medewerkers vermijden gebruik, tonen frustratie en ervaren onzekerheid of angst. De verandering ondermijnt productiviteit en levert risico’s op voor fouten of inefficiëntie.",
+        (2.0, 3.0): "🟠 De technologie wordt met moeite toegepast. Medewerkers gebruiken de tool alleen wanneer het moet, vaak met fouten of inefficiëntie. Er is een duidelijke kloof in vaardigheden en vertrouwen, waardoor draagvlak ontbreekt.",
+        (3.0, 4.0): "🟡 Het systeem wordt grotendeels gebruikt, maar niet optimaal. Medewerkers kennen de basis, maar benutten de technologie niet efficiënt. Er is risico op suboptimaal gebruik en frustratie bij complexere taken.",
+        (4.0, 5.0): "🟢 De technologie wordt functioneel en met vertrouwen gebruikt. Medewerkers zien het voordeel, werken er dagelijks mee en helpen collega’s. Borging en optimalisatie zijn nodig om het gebruik structureel en toekomstbestendig te maken.",
+        (5.0): "🟢 De technologie is vanzelfsprekend onderdeel van het werk. Medewerkers benutten het systeem effectief, denken mee over verbetering en dragen actief bij aan innovatie of opschaling."
+    },
+     "Structuur": {
+        (1.0, 2.0): "🔴 De organisatie ervaart chaos of weerstand. Medewerkers begrijpen hun nieuwe rol niet of verzetten zich tegen verlies van status, teamverband of duidelijkheid. Dit leidt tot verminderde samenwerking en risico op interne frictie.",
+        (2.0, 3.0): "🟠 De structuur is formeel aangepast, maar wordt nog niet begrepen of gedragen. Er is verwarring over verantwoordelijkheden, besluitvorming en positionering. Dit belemmert de effectiviteit van teams en leiderschap.",
+        (3.0, 4.0): "🟡 Er is een begin van structuuracceptatie, maar inconsistentie in toepassing en gedrag. Sommige teams functioneren volgens de nieuwe lijnen, anderen vallen terug in oude patronen. Er is behoefte aan heldere rolduiding en alignment.",
+        (4.0, 5.0): "🟢 De nieuwe structuur wordt grotendeels gevolgd en medewerkers nemen hun rol serieus. Wel zijn er nog vragen of onduidelijkheden bij cross-functionele samenwerking of escalatiepunten. Stabilisatie is nodig.",
+         (5.0): "🟢 De structuur is volledig geïntegreerd. Rollen, mandaten en samenwerking zijn helder en efficiënt. De organisatie is wendbaar en medewerkers opereren met vertrouwen binnen hun nieuwe context."
+    },
+"Cultuur": {
+        (1.0, 2.0): "🔴 De cultuurverandering wordt verworpen of genegeerd. Medewerkers geloven niet in de gewenste waarden of zien deze als onrealistisch of top-down opgelegd. Informele normen ondermijnen de gewenste gedragsverandering.",
+        (2.0, 3.0): "🟠 De nieuwe cultuur wordt met scepsis bekeken. Medewerkers volgen formeel het gewenste gedrag, maar geloven er niet in. Oud gedrag wordt in stand gehouden via informele patronen of voorbeeldgedrag van leiders.",
+        (3.0, 4.0): "🟡 De organisatie spreekt de nieuwe waarden uit, maar in gedrag is de verandering nog niet consistent zichtbaar. Er is bereidheid, maar ook onzekerheid over wat het concreet betekent. Cultuurverandering blijft oppervlakkig.",
+        (4.0, 5.0): "🟢 De nieuwe cultuur wordt zichtbaar in gedrag en houding. Medewerkers herkennen de kernwaarden en passen die toe in samenwerking. Wel is voortdurende versterking en voorbeeldgedrag van leiders nodig.",
+    (5.0): "🟢 De gewenste cultuur is vanzelfsprekend geworden. Waarden zijn voelbaar in taal, gedrag en besluitvorming. Medewerkers houden elkaar verantwoordelijk en zijn trots op de gedeelde identiteit van de organisatie."
+    },
+        
     # === 4. Lay-out in kolommen
     left_col, right_col = st.columns([1.2, 1])
 
@@ -301,15 +324,8 @@ with st.container():
         st.plotly_chart(fig_radar, use_container_width=True)
 
     with right_col:
-        st.markdown(
-            """
-            <div style="padding: 10px 20px;">
-                <h4>ADKAR Samenvatting</h4>
-                <p style="font-size: 20px;">""" + summary_text + """</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("#### 🧠 AI Samenvatting")
+        st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
 
     # Sluit container div (HTML)
     st.markdown("</div>", unsafe_allow_html=True)
