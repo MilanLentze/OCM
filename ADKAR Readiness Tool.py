@@ -168,7 +168,7 @@ change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is
 for domain in ADKAR_DOMAINS:
     with st.expander(f"📍 {domain}"):
         st.markdown(f"<h4 style='margin-bottom: 0.3rem;'>📊 Score voor {domain}</h4>", unsafe_allow_html=True)
-        score = st.slider("", 1.0, 5.0, step=0.1)
+        score = st.slider("", 1.0, 5.0, step=0.1, key=f"score_{domain}")
 
         # 🧠 Bepaal juiste label op basis van score
         if 1.0 <= score <= 1.9:
