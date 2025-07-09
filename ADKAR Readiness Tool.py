@@ -199,7 +199,7 @@ change_type = st.selectbox("Type verandering", CHANGE_TYPES, label_visibility="c
 st.markdown(" 3. Bekijk per domein de score, gedragssignaal, oorzaak en interventie")
 for domain in ADKAR_DOMAINS:
     with st.expander(f"🔍 {domain}"):
-        default = mean_scores.get(domain, 3.0)  # fallback is 3.0 als geen upload
+        default = mean_scores.get(domain, 1.0)  # fallback is 3.0 als geen upload
         score = st.slider("", 1.0, 5.0, value=default, step=0.1, key=f"slider_{domain}")
 
 
