@@ -251,28 +251,28 @@ with st.container():
 
 st.markdown("### 📊 ADKAR Profieloverzicht")
 
-    # Bereken gemiddelde
+# Bereken gemiddelde
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
-    # === 1. Gauge chart
+# === 1. Gauge chart
 fig_gauge = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=avg_score,
-        title={'text': "Gemiddelde ADKAR-score"},
-        gauge={
-            'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
-            'bar': {'color': "royalblue"},
-            'steps': [
-                {'range': [1.0, 2.0], 'color': '#ffcccc'},
-                {'range': [2.0, 3.0], 'color': '#ffe0b3'},
-                {'range': [3.0, 4.0], 'color': '#ffffb3'},
-                {'range': [4.0, 5.0], 'color': '#ccffcc'}
-            ],
-        }
-    ))
+    mode="gauge+number",
+    value=avg_score,
+    title={'text': "Gemiddelde ADKAR-score"},
+    gauge={
+        'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
+        'bar': {'color': "royalblue"},
+        'steps': [
+            {'range': [1.0, 2.0], 'color': '#ffcccc'},
+            {'range': [2.0, 3.0], 'color': '#ffe0b3'},
+            {'range': [3.0, 4.0], 'color': '#ffffb3'},
+            {'range': [4.0, 5.0], 'color': '#ccffcc'}
+        ],
+    }
+))
 fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 
-    # === 2. Radar chart
+# === 2. Radar chart
 labels = ADKAR_DOMAINS.copy()
 scores = [results[d]["score"] for d in labels]
 scores += scores[:1]
@@ -280,19 +280,18 @@ labels += labels[:1]
 
 fig_radar = go.Figure()
 fig_radar.add_trace(go.Scatterpolar(
-        r=scores,
-        theta=labels,
-        fill='toself',
-        name='ADKAR Scores',
-        line=dict(color='royalblue')
-    ))
+    r=scores,
+    theta=labels,
+    fill='toself',
+    name='ADKAR Scores',
+    line=dict(color='royalblue')
+))
 fig_radar.update_layout(
-        polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
-        showlegend=False,
-        height=250,
-        margin=dict(l=10, r=10, t=10, b=10)
-    )
-
+    polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
+    showlegend=False,
+    height=250,
+    margin=dict(l=10, r=10, t=10, b=10)
+)
     # === 3. Samenvatting Matrix
     summary_matrix = {
         "Proces": {
