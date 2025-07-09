@@ -170,9 +170,6 @@ st.markdown("Beoordeel elk ADKAR-domein en verkrijg inzichten in mogelijke gedra
 
 results = {}
 
-# 🔽 Type verandering bovenaan kiezen
-change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is op alle domeinen:", CHANGE_TYPES)
-
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
     with st.expander(f"🔍 {domain}"):
