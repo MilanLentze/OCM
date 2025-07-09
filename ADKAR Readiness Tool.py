@@ -193,7 +193,8 @@ for domain in ADKAR_DOMAINS:
         st.markdown(
             f"""
             <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
-                <h3 style="margin-bottom: 0.5rem; font-size: 1.4rem;">{domain} – {status_label}</h3>
+                <h3 style="margin-bottom: 0.3rem; font-size: 1.5rem;">📍 {domain}</h3>
+                <p style="margin: 0.1rem 0 0.7rem 0; font-weight: 500;">{status_label}</p>
                 <p style="margin: 0.2rem 0;"><strong>🔢 Score:</strong> {score:.1f}</p>
                 <p style="margin: 0.2rem 0;"><strong>🔧 Type verandering:</strong> {change_type.capitalize()}</p>
                 <hr style="margin: 0.7rem 0;">
