@@ -12,7 +12,7 @@ st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 
 # === Constantes ===
 ADKAR_DOMAINS = ["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]
-CHANGE_TYPES = ["proces", "technologie", "structuur", "cultuur"]
+CHANGE_TYPES = ["Proces", "Technologie", "Structuur", "Cultuur"]
 DOMAIN_COLORS = {
     "Awareness": "#FFA07A",
     "Desire": "#F4A460",
@@ -179,11 +179,11 @@ for domain in ADKAR_DOMAINS:
 
         # Label per score
         if score < 2.5:
-            status_label = "⚠️ Knelpunt"
+            status_label = "⚠️ Domein Onvoldoende"
         elif score < 3.5:
-            status_label = "🟠 Matig"
+            status_label = "🟠 Domein Matig"
         else:
-            status_label = "✅ Sterk domein"
+            status_label = "✅ Domein Sterk"
 
         # Toon output in visueel nette box
         st.markdown(
@@ -193,7 +193,7 @@ for domain in ADKAR_DOMAINS:
                 <p style="margin: 0.2rem 0;"><strong>🔢 Score:</strong> {score:.1f}</p>
                 <p style="margin: 0.2rem 0;"><strong>🔧 Type verandering:</strong> {change_type.capitalize()}</p>
                 <hr style="margin: 0.7rem 0;">
-                <p style="margin: 0.2rem 0;"><strong>📍 Gedragssignaal:</strong><br>{feedback[0]}</p>
+                <p style="margin: 0.2rem 0;"><strong>📍 Mogelijk gedragssignaal:</strong><br>{feedback[0]}</p>
                 <p style="margin: 0.2rem 0;"><strong>💡 Mogelijke oorzaak:</strong><br>{feedback[1]}</p>
                 <p style="margin: 0.2rem 0;"><strong>🛠️ Aanpak/interventie:</strong><br>{feedback[2]}</p>
             </div>
