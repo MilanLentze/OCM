@@ -181,8 +181,6 @@ for domain in ADKAR_DOMAINS:
         else:
             status_label = "✅ Score: Uitstekend"
 
-        st.write(f"{domain} – {status_label}")
-
         # 🔍 Haal feedback op uit matrix
         feedback = ("", "", "")
         if domain in FEEDBACK_MATRIX:
