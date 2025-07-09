@@ -197,6 +197,7 @@ with st.expander(f"{domain} – {status_label}", expanded=True):
                 "cause": feedback[1],
                 "intervention": feedback[2]
             }
+        }
 
 # === Gemiddelde Score ===
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
