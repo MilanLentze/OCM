@@ -193,7 +193,7 @@ if uploaded_file:
 
 # === Keuze van type verandering ===
 st.markdown("2. Selecteer een type verandering")
-change_type = st.selectbox(" ", CHANGE_TYPES)
+change_type = st.selectbox("Type verandering", CHANGE_TYPES, label_visibility="collapsed")
 
 # === Invoer per domein ===
 st.markdown(" 3. Bekijk per domein de score, gedragssignaal, oorzaak en interventie")
