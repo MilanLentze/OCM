@@ -237,10 +237,13 @@ with st.container():
         unsafe_allow_html=True
     )
 
-    st.markdown("### 📊 ADKAR Profieloverzicht")
-
-    # Selecteer verander-type (voor samenvatting)
-    change_type = st.selectbox("Selecteer het type verandering:", ["Proces", "Technologie", "Structuur", "Cultuur"])
+    with st.container():
+    st.markdown(
+        """
+        <div style="background-color: #f2f2f2; padding: 30px; border-radius: 10px; margin-top: 50px;">
+        <h3>📊 ADKAR Profieloverzicht</h3>
+        """,
+        unsafe_allow_html=True
 
     # Bereken gemiddelde ADKAR-score
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
