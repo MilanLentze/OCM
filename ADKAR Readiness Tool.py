@@ -167,7 +167,7 @@ FEEDBACK_MATRIX = {
 
 st.title("📘 ADKAR Analyse")
 st.markdown("Beoordeel elk ADKAR-domein en verkrijg inzichten in mogelijke gedragssignalen, oorzaken en aanbevelingen.")
-
+st.markdown("Milan Lentze")
 results = {}
 
 # === Keuze van type verandering ===
