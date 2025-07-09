@@ -1,4 +1,4 @@
-# ADKAR Readiness Tool v2.0 met Score- én Type-Verandering Analyse
+# ADKAR Scan Tool met Score- én Type Verandering Analyse
 
 import streamlit as st
 import json
