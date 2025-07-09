@@ -13,7 +13,7 @@ st.markdown("""
     <style>
     section[aria-expanded="false"] > div:first-child,
     section[aria-expanded="true"] > div:first-child {
-        font-size: 1.6rem !important;
+        font-size: 3rem !important;
         font-weight: 800 !important;
         padding: 0.5rem 0;
     }
