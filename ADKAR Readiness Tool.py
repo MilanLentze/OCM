@@ -188,8 +188,7 @@ with st.expander(f"{domain} – {status_label}", expanded=True):
     st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
     st.markdown(f"**Aanpak/interventie:** {feedback[2]}")
 
-
-        results[domain] = {
+results[domain] = {
             "score": score,
             "type": change_type,
             "feedback": {
