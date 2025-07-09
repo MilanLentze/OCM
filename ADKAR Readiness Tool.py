@@ -293,7 +293,7 @@ fig_radar.update_layout(
     margin=dict(l=10, r=10, t=10, b=10)
 )
     # === 3. Samenvatting Matrix
-    summary_matrix = {
+summary_matrix = {
         "Proces": {
             (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
             (2.0, 3.0): "🟠 Er is sprake van beperkte acceptatie. Medewerkers zijn afwachtend en begrijpen het nut van de verandering niet volledig. De nieuwe processen worden mogelijk wel toegepast, maar zonder overtuiging of consistentie. Er is risico op terugval of schijnacceptatie.",
@@ -324,29 +324,29 @@ fig_radar.update_layout(
         }
     }
 
-    # Hulp: juiste tekst ophalen
-    def get_summary(avg_score, change_type):
-        for key in summary_matrix[change_type]:
-            low = key[0]
-            high = key[1] if len(key) > 1 else 5.0
-            if low <= avg_score < high or avg_score == 5.0:
-                return summary_matrix[change_type][key]
-        return "⚠️ Geen samenvatting beschikbaar."
-   
-   
-    summary_text = get_summary(avg_score, change_type)
+# Hulp: juiste tekst ophalen
+def get_summary(avg_score, change_type):
+    for key in summary_matrix[change_type]:
+        low = key[0]
+        high = key[1] if len(key) > 1 else 5.0
+        if low <= avg_score < high or avg_score == 5.0:
+            return summary_matrix[change_type][key]
+    return "⚠️ Geen samenvatting beschikbaar."
 
-    # === 4. Lay-out visualisaties + samenvatting
-    left_col, right_col = st.columns([1.2, 1])
-    with left_col:
-        st.plotly_chart(fig_gauge, use_container_width=True)
-        st.plotly_chart(fig_radar, use_container_width=True)
+summary_text = get_summary(avg_score, change_type)
 
-    with right_col:
-        st.markdown("#### 🧠 ADKAR Samenvatting")
-        st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
+# === 4. Lay-out visualisaties + samenvatting
+left_col, right_col = st.columns([1.2, 1])
 
-    st.markdown("</div>", unsafe_allow_html=True)
+with left_col:
+    st.plotly_chart(fig_gauge, use_container_width=True)
+    st.plotly_chart(fig_radar, use_container_width=True)
+
+with right_col:
+    st.markdown("#### 🧠 ADKAR Samenvatting")
+    st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
 
     
 # === Witruimte boven de titel
