@@ -11,10 +11,9 @@ import tempfile
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 st.markdown("""
     <style>
-    [data-testid="stExpander"] summary {
-        font-size: 2.2rem !important;
+    details summary {
+        font-size: 1.5rem !important;
         font-weight: 800 !important;
-        color: #222 !important;
     }
     </style>
 """, unsafe_allow_html=True)
