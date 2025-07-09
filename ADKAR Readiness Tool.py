@@ -249,7 +249,7 @@ with st.container():
         unsafe_allow_html=True
     )
 
-      st.markdown("### 📊 ADKAR Profieloverzicht")
+st.markdown("### 📊 ADKAR Profieloverzicht")
 
     # Bereken gemiddelde
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
