@@ -232,17 +232,14 @@ st.markdown(" ")
 st.markdown(" ")
 
 # === ADKAR Profieloverzicht Blok ===
-st.markdown("""
-    <style>
-    div[data-testid="stVerticalBlock"]:has(.gray-box-content) {
-        background-color: #f2f2f2;
-        padding: 30px;
-        border-radius: 10px;
-        margin-top: 50px;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
+<style>
+.gray-box-content {
+    background-color: white;  /* of gewoon weglaten */
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+</style>
 with st.container():
     st.markdown('<div class="gray-box-content">', unsafe_allow_html=True)
 
