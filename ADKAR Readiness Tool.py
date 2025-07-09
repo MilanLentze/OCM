@@ -231,71 +231,70 @@ st.markdown(" ")
 st.markdown(" ")
 st.markdown(" ")
 
-st.markdown("### 📊 ADKAR Profieloverzicht")
-
-# = Gemiddelde score
-avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
-
-# === 1. Gauge chart
-fig_gauge = go.Figure(go.Indicator(
-    mode="gauge+number",
-    value=avg_score,
-    title={'text': "Gemiddelde ADKAR-score"},
-    gauge={
-        'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
-        'bar': {'color': "royalblue"},
-        'steps': [
-            {'range': [1.0, 2.0], 'color': '#ffcccc'},
-            {'range': [2.0, 3.0], 'color': '#ffe0b3'},
-            {'range': [3.0, 4.0], 'color': '#ffffb3'},
-            {'range': [4.0, 5.0], 'color': '#ccffcc'}
-        ],
-    }
-))
-fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
-
-# === 2. Radar chart
-labels = ADKAR_DOMAINS.copy()
-scores = [results[d]["score"] for d in labels]
-scores += scores[:1]
-labels += labels[:1]
-
-fig_radar = go.Figure()
-fig_radar.add_trace(go.Scatterpolar(
-    r=scores,
-    theta=labels,
-    fill='toself',
-    name='ADKAR Scores',
-    line=dict(color='royalblue')
-))
-fig_radar.update_layout(
-    polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
-    showlegend=False,
-    height=250,
-    margin=dict(l=10, r=10, t=10, b=10)
-)
-
-# === 3. AI Samenvattingstekst
-summary_text = ""
-if avg_score < 2:
-    summary_text = "🔴 De ADKAR-score is zeer laag. Dit suggereert aanzienlijke weerstand of onbekendheid binnen de organisatie. Richt interventies op bewustwording en motivatie."
-elif avg_score < 3:
-    summary_text = "🟠 De ADKAR-score is aan de lage kant. Hoewel er enige mate van acceptatie lijkt te zijn, is er nog onvoldoende draagvlak of kennis aanwezig voor een succesvolle verandering."
-elif avg_score < 4:
-    summary_text = "🟡 De ADKAR-score is gemiddeld. De organisatie heeft een redelijk basisniveau van veranderbereidheid, maar er zijn enkele domeinen die aandacht vragen."
-else:
-    summary_text = "🟢 De ADKAR-score is sterk. Er is een breed draagvlak en voldoende kennis en motivatie aanwezig voor succesvolle verandering."
-
-# === 4. Visuele box met inhoud
+# === ADKAR Profieloverzicht Blok ===
 with st.container():
     st.markdown(
         """
-        <div style="background-color: #f2f2f2; padding: 25px 20px 10px 20px; border-radius: 12px;">
+        <div style="background-color: #f2f2f2; padding: 30px 25px 25px 25px; border-radius: 10px; margin-top: 50px;">
             <h3 style="margin-top: 0;">📊 ADKAR Profieloverzicht</h3>
+        </div>
         """,
         unsafe_allow_html=True
     )
 
+    # Bereken gemiddelde score
+    avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
+
+    # === 1. Gauge chart
+    fig_gauge = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=avg_score,
+        title={'text': "Gemiddelde ADKAR-score"},
+        gauge={
+            'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'bar': {'color': "royalblue"},
+            'steps': [
+                {'range': [1.0, 2.0], 'color': '#ffcccc'},
+                {'range': [2.0, 3.0], 'color': '#ffe0b3'},
+                {'range': [3.0, 4.0], 'color': '#ffffb3'},
+                {'range': [4.0, 5.0], 'color': '#ccffcc'}
+            ],
+        }
+    ))
+    fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
+
+    # === 2. Radar chart
+    labels = ADKAR_DOMAINS.copy()
+    scores = [results[d]["score"] for d in labels]
+    scores += scores[:1]
+    labels += labels[:1]
+
+    fig_radar = go.Figure()
+    fig_radar.add_trace(go.Scatterpolar(
+        r=scores,
+        theta=labels,
+        fill='toself',
+        name='ADKAR Scores',
+        line=dict(color='royalblue')
+    ))
+    fig_radar.update_layout(
+        polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
+        showlegend=False,
+        height=250,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+
+    # === 3. AI Samenvatting
+    if avg_score < 2:
+        summary_text = "🔴 De ADKAR-score is zeer laag. Dit suggereert aanzienlijke weerstand of onbekendheid binnen de organisatie. Richt interventies op bewustwording en motivatie."
+    elif avg_score < 3:
+        summary_text = "🟠 De ADKAR-score is aan de lage kant. Hoewel er enige mate van acceptatie lijkt te zijn, is er nog onvoldoende draagvlak of kennis aanwezig voor een succesvolle verandering."
+    elif avg_score < 4:
+        summary_text = "🟡 De ADKAR-score is gemiddeld. De organisatie heeft een redelijk basisniveau van veranderbereidheid, maar er zijn enkele domeinen die aandacht vragen."
+    else:
+        summary_text = "🟢 De ADKAR-score is sterk. Er is een breed draagvlak en voldoende kennis en motivatie aanwezig voor succesvolle verandering."
+
+    # === 4. Lay-out in kolommen
     left_col, right_col = st.columns([1.2, 1])
 
     with left_col:
@@ -303,10 +302,16 @@ with st.container():
         st.plotly_chart(fig_radar, use_container_width=True)
 
     with right_col:
-        st.markdown("#### 🧠 AI Samenvatting")
-        st.markdown(summary_text)
+        st.markdown(
+            """
+            <div style="padding: 10px 15px;">
+                <h4>🧠 AI Samenvatting</h4>
+                <p style="font-size: 16px;">""" + summary_text + """</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.markdown("</div>", unsafe_allow_html=True)
 
 # === PDF Export ===
 def generate_pdf(results):
