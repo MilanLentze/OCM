@@ -120,6 +120,3 @@ with col1:
         pdf_file = generate_pdf(results)
         with open(pdf_file.name, "rb") as f:
             st.download_button("Klik hier om te downloaden", f, file_name="adkar_resultaat.pdf", mime="application/pdf")
-
-
-        )
