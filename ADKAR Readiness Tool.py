@@ -1,5 +1,6 @@
 # ADKAR Scan Tool met Score- én Type Verandering Analyse
 
+import matplotlib.pyplot as plt
 import streamlit as st
 import json
 from fpdf import FPDF
