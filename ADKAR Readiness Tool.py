@@ -169,27 +169,28 @@ for domain in ADKAR_DOMAINS:
     with st.expander(f"📍 {domain}"):
         score = st.slider(f"Score voor {domain}", 1.0, 5.0, step=0.1)
 
-        # Zoek feedback
+        # 🧠 Bepaal juiste label op basis van score
+        if 1.0 <= score <= 1.9:
+            status_label = "🔴 Score 1.0–1.9: Zeer laag"
+        elif 2.0 <= score <= 2.9:
+            status_label = "🟠 Score 2.0–2.9: Laag"
+        elif 3.0 <= score <= 3.9:
+            status_label = "🟡 Score 3.0–3.9: Gemiddeld"
+        elif 4.0 <= score <= 4.9:
+            status_label = "🟢 Score 4.0–4.9: Sterk"
+        else:
+            status_label = "✅ Score 5.0: Uitstekend"
+
+        # 🔍 Haal feedback op uit matrix
         feedback = ("", "", "")
         if domain in FEEDBACK_MATRIX:
             for (low, high), types in FEEDBACK_MATRIX[domain].items():
                 if low <= score <= high:
-                    feedback = types.get(change_type, ("", "", ""))
+                    feedback = types.get(change_type.lower(), ("", "", ""))
                     break
-# Label per score
-if 1.0 <= score <= 1.9:
-    status_label = "🔴 Score 1.0–1.9: Zeer laag"
-elif 2.0 <= score <= 2.9:
-    status_label = "🟠 Score 2.0–2.9: Laag"
-elif 3.0 <= score <= 3.9:
-    status_label = "🟡 Score 3.0–3.9: Gemiddeld"
-elif 4.0 <= score <= 4.9:
-    status_label = "🟢 Score 4.0–4.9: Sterk"
-else:
-    status_label = "✅ Score 5.0: Uitstekend"
 
-        # Toon output in visueel nette box
-    st.markdown(
+        # 💬 Toon alles netjes in HTML-box
+        st.markdown(
             f"""
             <div style="padding: 1rem; background-color: #f9f9f9; border-radius: 8px;">
                 <h5 style="margin-bottom: 0.5rem;">{domain} – {status_label}</h5>
@@ -205,7 +206,7 @@ else:
         )
 
         # Voeg toe aan resultaten
-    results[domain] = {
+        results[domain] = {
             "score": score,
             "type": change_type,
             "feedback": {
@@ -214,7 +215,6 @@ else:
                 "intervention": feedback[2]
             }
         }
-
 
 # === Gemiddelde Score ===
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
