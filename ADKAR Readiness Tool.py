@@ -174,9 +174,20 @@ for domain in ADKAR_DOMAINS:
                     feedback = types.get(change_type, ("", "", ""))
                     break
 
-        st.markdown(f"🧠 **Gedragssignaal:** _{feedback[0]}_")
-        st.markdown(f"📉 **Mogelijke oorzaak:** _{feedback[1]}_")
-        st.markdown(f"🛠️ **Aanpak/interventie:** _{feedback[2]}_")
+# Label per score
+if score < 2.5:
+    status_label = "⚠️ Knelpunt"
+elif score < 3.5:
+    status_label = "🟠 Matig"
+else:
+    status_label = "✅ Sterk domein"
+
+with st.expander(f"{domain} – {status_label}", expanded=True):
+    st.markdown(f"**Score:** {score}  \n**Type verandering:** {change_type}")
+    st.markdown(f"**Gedragssignaal:** {feedback[0]}")
+    st.markdown(f"**Mogelijke oorzaak:** {feedback[1]}")
+    st.markdown(f"**Aanpak/interventie:** {feedback[2]}")
+
 
         results[domain] = {
             "score": score,
@@ -187,21 +198,6 @@ for domain in ADKAR_DOMAINS:
                 "intervention": feedback[2]
             }
         }
-
-    # ===== Statuslabel toevoegen =====
-    status = ""
-    if score < 2.0:
-        status = "🔴 Zeer Laag"
-    elif score < 3.0:
-        status = "🟠 Laag"
-    elif score < 4.0:
-        status = "🟡 Matig"
-    else:
-        status = "🟢 Sterk"
-
-    st.markdown(f"**Statuslabel:** {status}")
-    results[domain]["status"] = status
-
 
 # === Gemiddelde Score ===
 avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
