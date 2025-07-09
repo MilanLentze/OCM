@@ -252,7 +252,7 @@ with st.container():
 st.markdown("### 📊 ADKAR Profieloverzicht")
 
     # Bereken gemiddelde
-    avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
+   avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
     # === 1. Gauge chart
     fig_gauge = go.Figure(go.Indicator(
