@@ -390,7 +390,7 @@ with right_col:
     """, unsafe_allow_html=True)
 
     st.markdown(" ")
-    st.markdown("#### Interventieadvies")
+    st.markdown("#### Mogelijke eerste interventie stap")
     st.markdown(f"""
 <div style='background-color: #f2f2f2; padding: 20px; border-radius: 10px;'>
         <p style='font-size: 18px; color: black;'>{intervention_text}</p>
