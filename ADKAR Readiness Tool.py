@@ -165,8 +165,8 @@ FEEDBACK_MATRIX = {
 }
 
 
-st.title("📘 ADKAR Readiness Scan")
-st.markdown("Beoordeel elk ADKAR-domein en ontvang gedragssignalen, oorzaken en aanbevelingen.")
+st.title("📘 ADKAR Analyse")
+st.markdown("Beoordeel elk ADKAR-domein en verkrijg inzichten in mogelijke gedragssignalen, oorzaken en aanbevelingen.")
 
 results = {}
 
