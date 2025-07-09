@@ -238,6 +238,9 @@ with st.container():
 
     st.markdown("### 📊 ADKAR Profieloverzicht")
 
+st.markdown(" ")
+st.markdown(" ")
+
     # Bereken gemiddelde
     avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
@@ -279,7 +282,8 @@ with st.container():
         height=250,
         margin=dict(l=10, r=10, t=10, b=10)
     )
-        # === 3. Samenvatting Matrix
+     
+# === 3. Samenvatting Matrix
     summary_matrix = {
             "Proces": {
                 (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
@@ -329,9 +333,14 @@ with st.container():
         st.plotly_chart(fig_gauge, use_container_width=True)
         st.plotly_chart(fig_radar, use_container_width=True)
 
-    with right_col:
-        st.markdown("#### 🧠 ADKAR Samenvatting")
-        st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
+   with right_col:
+    st.markdown("#### 🧠 ADKAR Samenvatting")
+    
+    st.markdown(f"""
+    <div style='background-color: #f2f2f2; padding: 20px; border-radius: 10px;'>
+        <p style='font-size: 18px; color: black;'>{summary_text}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # === Witruimte boven de titel
 st.markdown(" ")
