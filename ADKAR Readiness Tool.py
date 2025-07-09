@@ -166,7 +166,7 @@ change_type = st.selectbox("🔧 Kies het type verandering dat van toepassing is
 
 # === Invoer per domein ===
 for domain in ADKAR_DOMAINS:
-    with st.expander(""):
+    with st.expander(f"<div style='display:none;'>📍 {domain}</div>", unsafe_allow_html=True):
         st.markdown(f"<h4 style='margin-top: 0;'>📊 Score voor {domain}</h4>", unsafe_allow_html=True)
         score = st.slider("", 1.0, 5.0, step=0.1, key=f"slider_{domain}")
 
