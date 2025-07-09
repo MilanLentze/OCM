@@ -9,26 +9,14 @@ from fpdf import FPDF
 import tempfile
 
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
-st.markdown(
-    """
+st.markdown("""
     <style>
-    /* Expander-header forceren met bredere selector */
-    div[data-testid="stExpander"] > details > summary {
+    summary {
         font-size: 1.8rem !important;
         font-weight: 800 !important;
-        padding-top: 0.8rem !important;
-        padding-bottom: 0.8rem !important;
-        color: #222 !important;
-    }
-
-    /* Extra: ruimte onder expander */
-    div[data-testid="stExpander"] {
-        margin-bottom: 1.5rem;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 # === Constantes ===
 ADKAR_DOMAINS = ["Awareness", "Desire", "Knowledge", "Ability", "Reinforcement"]
