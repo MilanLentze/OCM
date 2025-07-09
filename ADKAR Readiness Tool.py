@@ -8,6 +8,21 @@ import json
 from fpdf import FPDF
 import tempfile
 
+# 💄 Vergroot de titel van expanders
+st.markdown(
+    """
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 1.3rem;
+        font-weight: 700;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
 
 # === Constantes ===
