@@ -174,7 +174,7 @@ results = {}
 st.markdown(" ")
 # === Excel Upload Functionaliteit ===
 st.markdown("1. Upload Excel met ADKAR scores (format: Medewerker # | Awareness | Desire | Knowledge | Ability | Reinforcement)")
-uploaded_file = st.file_uploader(" ", type=["xlsx", "csv"])
+uploaded_file = st.file_uploader("Upload hier", type=["xlsx", "csv"], label_visibility="collapsed")
 mean_scores = {}  # Initieel leeg
 
 if uploaded_file:
