@@ -9,7 +9,6 @@ from fpdf import FPDF
 import tempfile
 
 st.set_page_config(page_title="ADKAR Scan Tool", layout="wide")
-
 st.markdown(
     """
     <style>
