@@ -25,132 +25,132 @@ DOMAIN_COLORS = {
 FEEDBACK_MATRIX = {
     "Awareness": {
         (1.0, 1.9): {
-            "proces": ("Volledige onwetendheid of verwarring", "Geen communicatie, vaagheid, overload", "Visuele storytelling, urgentiecampagnes, leiderschapscascade"),
-            "technologie": ("Technologische verwarring of geen notie", "Tool-overload of vakjargon", "Visualisatie van impact, directe gebruikerscases"),
-            "structuur": ("Onwetend over herstructurering", "Geen uitleg over impact op rol", "Simpele uitlegstructuur, casussen per afdeling"),
-            "cultuur": ("Geen idee van cultuurverandering", "Abstract taalgebruik, geen koppeling", "Voorbeelden, waarde-workshops, informele verhalen")
+            "Proces": ("Volledige onwetendheid of verwarring", "Geen communicatie, vaagheid, overload", "Visuele storytelling, urgentiecampagnes, leiderschapscascade"),
+            "Technologie": ("Technologische verwarring of geen notie", "Tool-overload of vakjargon", "Visualisatie van impact, directe gebruikerscases"),
+            "Structuur": ("Onwetend over herstructurering", "Geen uitleg over impact op rol", "Simpele uitlegstructuur, casussen per afdeling"),
+            "Cultuur": ("Geen idee van cultuurverandering", "Abstract taalgebruik, geen koppeling", "Voorbeelden, waarde-workshops, informele verhalen")
         },
         (2.0, 2.9): {
-            "proces": ("Weinig tot oppervlakkig begrip", "Te algemene uitleg, misconnectie met werkpraktijk", "Context-specifieke voorbeelden, vertaalsessies op teamniveau"),
-            "technologie": ("Weten dat iets verandert, maar niet waarom", "Tool gepusht zonder nut te tonen", "Live demo's, voorbeelden van peers"),
-            "structuur": ("Vaag gevoel dat iets verandert", "Geen koppeling met dagelijkse praktijk", "Structuurschema's met impact per team"),
-            "cultuur": ("Ongeïnspireerd, passieve houding", "Verandering voelt als managementverhaal", "Dialoog over waarden, verhalen van koplopers")
+            "Proces": ("Weinig tot oppervlakkig begrip", "Te algemene uitleg, misconnectie met werkpraktijk", "Context-specifieke voorbeelden, vertaalsessies op teamniveau"),
+            "Technologie": ("Weten dat iets verandert, maar niet waarom", "Tool gepusht zonder nut te tonen", "Live demo's, voorbeelden van peers"),
+            "Structuur": ("Vaag gevoel dat iets verandert", "Geen koppeling met dagelijkse praktijk", "Structuurschema's met impact per team"),
+            "Cultuur": ("Ongeïnspireerd, passieve houding", "Verandering voelt als managementverhaal", "Dialoog over waarden, verhalen van koplopers")
         },
         (3.0, 3.9): {
-            "proces": ("Begrip aanwezig maar niet overtuigend", "Info ontvangen maar geen verbinding", "Dialoogsessies, ‘wat betekent dit voor mij?’ sessies"),
-            "technologie": ("Snapt nut maar voelt het nog niet", "Nog geen vertrouwen in gebruiksgemak", "Framing via persoonlijke winst, peer influence"),
-            "structuur": ("Redelijk begrip van herstructurering", "Gebrek aan urgentie", "Verhalen van anderen, strategische kadering"),
-            "cultuur": ("Ziet het nut, maar nog geen betrokkenheid", "Verwarring over gedrag", "Gedragsscripts, praktische voorbeelden")
+            "Proces": ("Begrip aanwezig maar niet overtuigend", "Info ontvangen maar geen verbinding", "Dialoogsessies, ‘wat betekent dit voor mij?’ sessies"),
+            "Technologie": ("Snapt nut maar voelt het nog niet", "Nog geen vertrouwen in gebruiksgemak", "Framing via persoonlijke winst, peer influence"),
+            "Structuur": ("Redelijk begrip van herstructurering", "Gebrek aan urgentie", "Verhalen van anderen, strategische kadering"),
+            "Cultuur": ("Ziet het nut, maar nog geen betrokkenheid", "Verwarring over gedrag", "Gedragsscripts, praktische voorbeelden")
         },
         (4.0, 5.0): {
-            "proces": ("Helder en geaccepteerd waarom het nodig is", "Transparante communicatie, heldere richting", "Storytelling delen, versterken via informele netwerken"),
-            "technologie": ("Duidelijk waarom tools nodig zijn", "Tool sluit aan bij toekomstvisie", "Ambassadeurschap stimuleren"),
-            "structuur": ("Helderheid over herstructurering en doelen", "Strategische connectie gemaakt", "Laat teams zelf mee ontwerpen"),
-            "cultuur": ("Voelt zich verbonden met de gewenste cultuur", "Herkenning in waarden en gedrag", "Cultuurdragers versterken, storytelling")
+            "Proces": ("Helder en geaccepteerd waarom het nodig is", "Transparante communicatie, heldere richting", "Storytelling delen, versterken via informele netwerken"),
+            "Technologie": ("Duidelijk waarom tools nodig zijn", "Tool sluit aan bij toekomstvisie", "Ambassadeurschap stimuleren"),
+            "Structuur": ("Helderheid over herstructurering en doelen", "Strategische connectie gemaakt", "Laat teams zelf mee ontwerpen"),
+            "Cultuur": ("Voelt zich verbonden met de gewenste cultuur", "Herkenning in waarden en gedrag", "Cultuurdragers versterken, storytelling")
         }
     },
     "Desire": {
         (1.0, 1.9): {
-            "proces": ("Actieve weerstand of passieve sabotering", "Geen zeggenschap over procesverandering", "Invloed geven, weerstand normaliseren"),
-            "technologie": ("Technofobie of afhakend gedrag", "Angst voor controleverlies of fouten", "Peer influence, laten ervaren van gemak"),
-            "structuur": ("Ontkenning of terugtrekken", "Onzekerheid over toekomstpositie", "Transparant zijn over implicaties en keuzeruimte"),
-            "cultuur": ("Cynisme of terugverlangen naar oude cultuur", "Verlies van identiteit of waarden", "Erkenning van emoties, dialoog op waarden")
+            "Proces": ("Actieve weerstand of passieve sabotering", "Geen zeggenschap over procesverandering", "Invloed geven, weerstand normaliseren"),
+            "Technologie": ("Technofobie of afhakend gedrag", "Angst voor controleverlies of fouten", "Peer influence, laten ervaren van gemak"),
+            "Structuur": ("Ontkenning of terugtrekken", "Onzekerheid over toekomstpositie", "Transparant zijn over implicaties en keuzeruimte"),
+            "Cultuur": ("Cynisme of terugverlangen naar oude cultuur", "Verlies van identiteit of waarden", "Erkenning van emoties, dialoog op waarden")
         },
         (2.0, 2.9): {
-            "proces": ("Afstandelijke houding", "Niet overtuigd van nut of urgentie", "Betrekken bij herontwerp, show quick wins"),
-            "technologie": ("Sceptisch of onverschillig", "Geen vertrouwen in nut van tool", "Koppelen aan werkplezier of gemak"),
-            "structuur": ("Passief volgen", "Zien reorganisatie als opgelegd", "Verbind met persoonlijke impact en groeikansen"),
-            "cultuur": ("Neutraal, niet betrokken", "Verandering voelt extern of abstract", "Inspirerende verhalen en leiderschap zichtbaar maken")
+            "Proces": ("Afstandelijke houding", "Niet overtuigd van nut of urgentie", "Betrekken bij herontwerp, show quick wins"),
+            "Technologie": ("Sceptisch of onverschillig", "Geen vertrouwen in nut van tool", "Koppelen aan werkplezier of gemak"),
+            "Structuur": ("Passief volgen", "Zien reorganisatie als opgelegd", "Verbind met persoonlijke impact en groeikansen"),
+            "Cultuur": ("Neutraal, niet betrokken", "Verandering voelt extern of abstract", "Inspirerende verhalen en leiderschap zichtbaar maken")
         },
         (3.0, 3.9): {
-            "proces": ("Voorzichtig meewerkend", "Nog weinig emotionele connectie", "Successen delen, ruimte voor invloed geven"),
-            "technologie": ("Mee eens, maar geen ambassadeur", "Onzekerheid of gewenning ontbreekt", "Gamified adoptie, ervaringssessies"),
-            "structuur": ("Mee eens mits goed uitgelegd", "Er zijn zorgen, maar wel openheid", "Visie koppelen aan dagelijkse rol"),
-            "cultuur": ("Mee in woorden, nog niet in gedrag", "Onzeker over nieuwe normen", "Voorbeelden zichtbaar maken, belonen gewenst gedrag")
+            "Proces": ("Voorzichtig meewerkend", "Nog weinig emotionele connectie", "Successen delen, ruimte voor invloed geven"),
+            "Technologie": ("Mee eens, maar geen ambassadeur", "Onzekerheid of gewenning ontbreekt", "Gamified adoptie, ervaringssessies"),
+            "Structuur": ("Mee eens mits goed uitgelegd", "Er zijn zorgen, maar wel openheid", "Visie koppelen aan dagelijkse rol"),
+            "Cultuur": ("Mee in woorden, nog niet in gedrag", "Onzeker over nieuwe normen", "Voorbeelden zichtbaar maken, belonen gewenst gedrag")
         },
         (4.0, 5.0): {
-            "proces": ("Actieve medewerking en initiatief", "Herkenning van waarde en nut", "Geef podium, rolmodelgedrag stimuleren"),
-            "technologie": ("Promoot tool spontaan", "Ervaring positief, wil delen", "Laat ambassadeurs trainen en supporten"),
-            "structuur": ("Draagt reorganisatie", "Snapt strategisch nut", "Laat hen nieuwe structuren co-designen"),
-            "cultuur": ("Belichaamt nieuwe cultuur", "Verbinding met waarden en doelen", "Versterk met storytelling en peer influence")
+            "Proces": ("Actieve medewerking en initiatief", "Herkenning van waarde en nut", "Geef podium, rolmodelgedrag stimuleren"),
+            "Technologie": ("Promoot tool spontaan", "Ervaring positief, wil delen", "Laat ambassadeurs trainen en supporten"),
+            "Structuur": ("Draagt reorganisatie", "Snapt strategisch nut", "Laat hen nieuwe structuren co-designen"),
+            "Cultuur": ("Belichaamt nieuwe cultuur", "Verbinding met waarden en doelen", "Versterk met storytelling en peer influence")
         }
     },
     "Knowledge": {
     (1.0, 1.9): {
-        "proces": ("Geen idee wat ik moet doen", "Geen uitleg over nieuwe werkwijze", "Stap-voor-stap handleiding, live instructie"),
-        "technologie": ("Verdwaald in tool of systeem", "Geen onboarding, te technisch", "Demo’s, dummy accounts, visuele gidsen"),
-        "structuur": ("Onbegrip over nieuwe rollen/functies", "Geen uitleg over gevolgen", "Schema’s met voorbeeldtaken, uitleg-sessies"),
-        "cultuur": ("Weet niet welk gedrag gewenst is", "Verandering blijft abstract", "Gedragsexamples, waardenposter, interactieve sessies")
+        "Proces": ("Geen idee wat ik moet doen", "Geen uitleg over nieuwe werkwijze", "Stap-voor-stap handleiding, live instructie"),
+        "Technologie": ("Verdwaald in tool of systeem", "Geen onboarding, te technisch", "Demo’s, dummy accounts, visuele gidsen"),
+        "Structuur": ("Onbegrip over nieuwe rollen/functies", "Geen uitleg over gevolgen", "Schema’s met voorbeeldtaken, uitleg-sessies"),
+        "Cultuur": ("Weet niet welk gedrag gewenst is", "Verandering blijft abstract", "Gedragsexamples, waardenposter, interactieve sessies")
     },
     (2.0, 2.9): {
-        "proces": ("Oppervlakkig begrip van nieuwe werkwijze", "Algemene uitleg, geen concrete voorbeelden", "Werksimulaties, buddy-systemen"),
-        "technologie": ("Beperkt begrip van systeem", "Training gemist of vergeten", "Refresher video’s, just-in-time tips"),
-        "structuur": ("Basiskennis van structuur", "Slecht afgestemde communicatie", "Interactieve organigrammen, impactkaarten"),
-        "cultuur": ("Herhaalt termen maar zonder inzicht", "Geen vertaling naar gedrag", "Verhalende voorbeelden, groepsdiscussies")
+        "Proces": ("Oppervlakkig begrip van nieuwe werkwijze", "Algemene uitleg, geen concrete voorbeelden", "Werksimulaties, buddy-systemen"),
+        "Technologie": ("Beperkt begrip van systeem", "Training gemist of vergeten", "Refresher video’s, just-in-time tips"),
+        "Structuur": ("Basiskennis van structuur", "Slecht afgestemde communicatie", "Interactieve organigrammen, impactkaarten"),
+        "Cultuur": ("Herhaalt termen maar zonder inzicht", "Geen vertaling naar gedrag", "Verhalende voorbeelden, groepsdiscussies")
     },
     (3.0, 3.9): {
-        "proces": ("Weet wat moet, maar onzeker over toepassing", "Te weinig oefening", "Practice labs, Q&A sessies"),
-        "technologie": ("Kan navigeren maar mist finesse", "Ingewikkelde functies onbekend", "How-to’s, advanced tips door peers"),
-        "structuur": ("Redelijk inzicht in impact", "Twijfel over positionering", "Feedbackmomenten, visuele rolduiding"),
-        "cultuur": ("Snapt kernwaarden maar twijfelt over toepassing", "Onzeker over verwachting", "Gedragssimulaties, groepsreflectie")
+        "Proces": ("Weet wat moet, maar onzeker over toepassing", "Te weinig oefening", "Practice labs, Q&A sessies"),
+        "Technologie": ("Kan navigeren maar mist finesse", "Ingewikkelde functies onbekend", "How-to’s, advanced tips door peers"),
+        "Structuur": ("Redelijk inzicht in impact", "Twijfel over positionering", "Feedbackmomenten, visuele rolduiding"),
+        "Cultuur": ("Snapt kernwaarden maar twijfelt over toepassing", "Onzeker over verwachting", "Gedragssimulaties, groepsreflectie")
     },
     (4.0, 5.0): {
-        "proces": ("Volledig begrip van nieuwe werkwijze", "Trainingen en tools waren effectief", "Laat medewerkers anderen trainen"),
-        "technologie": ("Comfortabel met systeemgebruik", "Goede onboarding", "Laat medewerkers tips delen"),
-        "structuur": ("Volledig inzicht in nieuwe structuur", "Heldere communicatie", "Gebruik als sparringpartner voor anderen"),
-        "cultuur": ("Begrijpt en vertaalt cultuurwaarden", "Heldere normcommunicatie", "Rolmodel, gedrag in communicatie verankeren")
+        "Proces": ("Volledig begrip van nieuwe werkwijze", "Trainingen en tools waren effectief", "Laat medewerkers anderen trainen"),
+        "Technologie": ("Comfortabel met systeemgebruik", "Goede onboarding", "Laat medewerkers tips delen"),
+        "Structuur": ("Volledig inzicht in nieuwe structuur", "Heldere communicatie", "Gebruik als sparringpartner voor anderen"),
+        "Cultuur": ("Begrijpt en vertaalt cultuurwaarden", "Heldere normcommunicatie", "Rolmodel, gedrag in communicatie verankeren")
     }
     },
     "Ability": {
     (1.0, 1.9): {
-        "proces": ("Fouten, frustratie of vermijding", "Geen ruimte om te oefenen", "Mentoring, tijd om te leren"),
-        "technologie": ("Tool wordt vermeden of fout gebruikt", "Te complex, geen begeleiding", "Simpele taken eerst, schermopnames gebruiken"),
-        "structuur": ("Niet in staat nieuwe rol op te pakken", "Geen transitie-ondersteuning", "Schaduwrollen, observatie-onboarding"),
-        "cultuur": ("Onzeker of inconsequent gedrag", "Angst voor oordeel", "Feedback in veilige setting, rollenspellen")
+        "Proces": ("Fouten, frustratie of vermijding", "Geen ruimte om te oefenen", "Mentoring, tijd om te leren"),
+        "Technologie": ("Tool wordt vermeden of fout gebruikt", "Te complex, geen begeleiding", "Simpele taken eerst, schermopnames gebruiken"),
+        "Structuur": ("Niet in staat nieuwe rol op te pakken", "Geen transitie-ondersteuning", "Schaduwrollen, observatie-onboarding"),
+        "Cultuur": ("Onzeker of inconsequent gedrag", "Angst voor oordeel", "Feedback in veilige setting, rollenspellen")
     },
     (2.0, 2.9): {
-        "proces": ("Pogingen, maar onzeker of onvolledig", "Gebrek aan oefentijd", "Werkplekcoaching, duidelijke prioriteiten"),
-        "technologie": ("Beperkte vaardigheid", "Verouderde instructies, weinig herhaling", "Praktische support via helpdesk of peers"),
-        "structuur": ("Deeltaken lukken, maar mist overzicht", "Nieuwe rol niet duidelijk afgebakend", "Stapplan per week, daily check-ins"),
-        "cultuur": ("Probeert zich aan te passen, maar onzeker", "Nieuwe normen nog niet eigen", "Co-coaching, voorbeeldgedrag van peers")
+        "Proces": ("Pogingen, maar onzeker of onvolledig", "Gebrek aan oefentijd", "Werkplekcoaching, duidelijke prioriteiten"),
+        "Technologie": ("Beperkte vaardigheid", "Verouderde instructies, weinig herhaling", "Praktische support via helpdesk of peers"),
+        "Structuur": ("Deeltaken lukken, maar mist overzicht", "Nieuwe rol niet duidelijk afgebakend", "Stapplan per week, daily check-ins"),
+        "Cultuur": ("Probeert zich aan te passen, maar onzeker", "Nieuwe normen nog niet eigen", "Co-coaching, voorbeeldgedrag van peers")
     },
     (3.0, 3.9): {
-        "proces": ("Past het toe met enige hulp", "Ervaring groeit", "Verantwoordelijkheid geven, feedbackloops"),
-        "technologie": ("Zelfstandig met tool, af en toe hulp nodig", "Onzeker bij uitzonderingen", "Casussen oefenen, advanced training"),
-        "structuur": ("Kan nieuwe rol grotendeels aan", "Mist soms vertrouwen", "Peer validation, complimenten voor voortgang"),
-        "cultuur": ("Vertoont gedrag grotendeels passend", "Nog twijfel in groep", "Feedback door team, positieve beloning")
+        "Proces": ("Past het toe met enige hulp", "Ervaring groeit", "Verantwoordelijkheid geven, feedbackloops"),
+        "Technologie": ("Zelfstandig met tool, af en toe hulp nodig", "Onzeker bij uitzonderingen", "Casussen oefenen, advanced training"),
+        "Structuur": ("Kan nieuwe rol grotendeels aan", "Mist soms vertrouwen", "Peer validation, complimenten voor voortgang"),
+        "Cultuur": ("Vertoont gedrag grotendeels passend", "Nog twijfel in groep", "Feedback door team, positieve beloning")
     },
     (4.0, 5.0): {
-        "proces": ("Zelfverzekerd en foutloos toepassen", "Oefening en ervaring aanwezig", "Laat hen als coach optreden"),
-        "technologie": ("Effectief en efficiënt in toolgebruik", "Volledige vaardigheid", "Vraag hen input voor optimalisatie"),
-        "structuur": ("Kan rol uitvoeren en collega’s ondersteunen", "Heldere positionering", "Gebruik als mentor of buddy"),
-        "cultuur": ("Gedrag vanzelfsprekend en congruent", "Nieuwe cultuur geïnternaliseerd", "Laat voorbeeld zijn voor nieuwe instroom")
+        "Proces": ("Zelfverzekerd en foutloos toepassen", "Oefening en ervaring aanwezig", "Laat hen als coach optreden"),
+        "Technologie": ("Effectief en efficiënt in toolgebruik", "Volledige vaardigheid", "Vraag hen input voor optimalisatie"),
+        "Structuur": ("Kan rol uitvoeren en collega’s ondersteunen", "Heldere positionering", "Gebruik als mentor of buddy"),
+        "Cultuur": ("Gedrag vanzelfsprekend en congruent", "Nieuwe cultuur geïnternaliseerd", "Laat voorbeeld zijn voor nieuwe instroom")
     }
     },
     "Reinforcement": {
     (1.0, 1.9): {
-        "proces": ("Valt terug in oude routines", "Geen opvolging of monitoring", "Leiders aanspreken, successen zichtbaar maken"),
-        "technologie": ("Tool wordt verlaten", "Geen check-in of support", "Adoptie monitoren, reminders, follow-ups"),
-        "structuur": ("Vervalt in oude rolstructuur", "Geen verankering in beleid", "Formele updates, nieuwe verantwoordelijkheden borgen"),
-        "cultuur": ("Gedrag verwatert", "Leiders doen niet mee", "Gedrag zichtbaar maken, cultuurdragers aanspreken")
+        "Proces": ("Valt terug in oude routines", "Geen opvolging of monitoring", "Leiders aanspreken, successen zichtbaar maken"),
+        "Technologie": ("Tool wordt verlaten", "Geen check-in of support", "Adoptie monitoren, reminders, follow-ups"),
+        "Structuur": ("Vervalt in oude rolstructuur", "Geen verankering in beleid", "Formele updates, nieuwe verantwoordelijkheden borgen"),
+        "Cultuur": ("Gedrag verwatert", "Leiders doen niet mee", "Gedrag zichtbaar maken, cultuurdragers aanspreken")
     },
     (2.0, 2.9): {
-        "proces": ("Soms juiste werkwijze, soms niet", "Inconsistentie in teams", "Teamreviews, korte check-ins"),
-        "technologie": ("Afhankelijk van persoon of team", "Geen supportstructuur", "Superusers installeren, interne FAQ’s"),
-        "structuur": ("Nieuwe structuur wordt soms genegeerd", "Gebrek aan leiderschapssupport", "Teamverantwoordelijkheid benadrukken"),
-        "cultuur": ("Wisselend gedrag", "Geen consequenties of beloning", "Waardering geven, sociale erkenning")
+        "Proces": ("Soms juiste werkwijze, soms niet", "Inconsistentie in teams", "Teamreviews, korte check-ins"),
+        "Technologie": ("Afhankelijk van persoon of team", "Geen supportstructuur", "Superusers installeren, interne FAQ’s"),
+        "Structuur": ("Nieuwe structuur wordt soms genegeerd", "Gebrek aan leiderschapssupport", "Teamverantwoordelijkheid benadrukken"),
+        "Cultuur": ("Wisselend gedrag", "Geen consequenties of beloning", "Waardering geven, sociale erkenning")
     },
     (3.0, 3.9): {
-        "proces": ("Grotendeels geborgd", "Nog risico bij drukte", "Blijvende reminders, standaardisering"),
-        "technologie": ("Consistent gebruik bij meerderheid", "Enkele afhakers", "Verhalen delen, nudging via peers"),
-        "structuur": ("Rol en structuur meestal geborgd", "Afhankelijk van teamlead", "Verantwoordelijkheid in team zichtbaar maken"),
-        "cultuur": ("Nieuwe normen worden gevolgd", "Nog onzeker in informele sfeer", "Erken gedrag, continue reflectie")
+        "Proces": ("Grotendeels geborgd", "Nog risico bij drukte", "Blijvende reminders, standaardisering"),
+        "Technologie": ("Consistent gebruik bij meerderheid", "Enkele afhakers", "Verhalen delen, nudging via peers"),
+        "Structuur": ("Rol en structuur meestal geborgd", "Afhankelijk van teamlead", "Verantwoordelijkheid in team zichtbaar maken"),
+        "Cultuur": ("Nieuwe normen worden gevolgd", "Nog onzeker in informele sfeer", "Erken gedrag, continue reflectie")
     },
     (4.0, 5.0): {
-        "proces": ("Verandering is standaardpraktijk", "Proces zit in het systeem", "Blijf belonen, deel good practices"),
-        "technologie": ("Toolgebruik vanzelfsprekend", "Volledige integratie", "Ambassadeurschap onderhouden"),
-        "structuur": ("Nieuwe structuur is de norm", "Teams functioneren soepel", "Gebruik voor nieuwe transities als referentie"),
-        "cultuur": ("Nieuwe cultuur gedragen door iedereen", "Gedrag is onbewust congruent", "Koester cultuurdragers, onboarding verankeren")
+        "Proces": ("Verandering is standaardpraktijk", "Proces zit in het systeem", "Blijf belonen, deel good practices"),
+        "Technologie": ("Toolgebruik vanzelfsprekend", "Volledige integratie", "Ambassadeurschap onderhouden"),
+        "Structuur": ("Nieuwe structuur is de norm", "Teams functioneren soepel", "Gebruik voor nieuwe transities als referentie"),
+        "Cultuur": ("Nieuwe cultuur gedragen door iedereen", "Gedrag is onbewust congruent", "Koester cultuurdragers, onboarding verankeren")
     }
 }
 }
@@ -176,14 +176,17 @@ for domain in ADKAR_DOMAINS:
                 if low <= score <= high:
                     feedback = types.get(change_type, ("", "", ""))
                     break
-
-        # Label per score
-        if score < 2.5:
-            status_label = "⚠️ Domein Onvoldoende"
-        elif score < 3.5:
-            status_label = "🟠 Domein Matig"
-        else:
-            status_label = "✅ Domein Sterk"
+# Label per score
+if 1.0 <= score <= 1.9:
+    status_label = "🔴 Score 1.0–1.9: Zeer laag"
+elif 2.0 <= score <= 2.9:
+    status_label = "🟠 Score 2.0–2.9: Laag"
+elif 3.0 <= score <= 3.9:
+    status_label = "🟡 Score 3.0–3.9: Gemiddeld"
+elif 4.0 <= score <= 4.9:
+    status_label = "🟢 Score 4.0–4.9: Sterk"
+else:
+    status_label = "✅ Score 5.0: Uitstekend"
 
         # Toon output in visueel nette box
         st.markdown(
