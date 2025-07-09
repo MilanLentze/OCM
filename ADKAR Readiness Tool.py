@@ -232,22 +232,19 @@ st.markdown(" ")
 st.markdown(" ")
 
 # === ADKAR Profieloverzicht Blok ===
+st.markdown("""
+    <style>
+    div[data-testid="stVerticalBlock"]:has(.gray-box-content) {
+        background-color: #f2f2f2;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 with st.container():
-    # Grijze achtergrond instellen via st.markdown met CSS (op container zelf)
-    st.markdown(
-        """
-        <style>
-        .gray-box {
-            background-color: #f2f2f2;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 50px;
-        }
-        </style>
-        <div class="gray-box">
-        """,
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="gray-box-content">', unsafe_allow_html=True)
 
     st.markdown("### 📊 ADKAR Profieloverzicht")
 
@@ -348,7 +345,6 @@ with st.container():
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    
 # === Witruimte boven de titel
 st.markdown(" ")
 st.markdown(" ")
