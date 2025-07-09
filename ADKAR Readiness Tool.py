@@ -249,104 +249,104 @@ with st.container():
         unsafe_allow_html=True
     )
 
-st.markdown("### 📊 ADKAR Profieloverzicht")
+    st.markdown("### 📊 ADKAR Profieloverzicht")
 
-# Bereken gemiddelde
-avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
+    # Bereken gemiddelde
+    avg_score = round(np.mean([v["score"] for v in results.values()]), 2)
 
-# === 1. Gauge chart
-fig_gauge = go.Figure(go.Indicator(
-    mode="gauge+number",
-    value=avg_score,
-    title={'text': "Gemiddelde ADKAR-score"},
-    gauge={
-        'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
-        'bar': {'color': "royalblue"},
-        'steps': [
-            {'range': [1.0, 2.0], 'color': '#ffcccc'},
-            {'range': [2.0, 3.0], 'color': '#ffe0b3'},
-            {'range': [3.0, 4.0], 'color': '#ffffb3'},
-            {'range': [4.0, 5.0], 'color': '#ccffcc'}
-        ],
-    }
-))
-fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
-
-# === 2. Radar chart
-labels = ADKAR_DOMAINS.copy()
-scores = [results[d]["score"] for d in labels]
-scores += scores[:1]
-labels += labels[:1]
-
-fig_radar = go.Figure()
-fig_radar.add_trace(go.Scatterpolar(
-    r=scores,
-    theta=labels,
-    fill='toself',
-    name='ADKAR Scores',
-    line=dict(color='royalblue')
-))
-fig_radar.update_layout(
-    polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
-    showlegend=False,
-    height=250,
-    margin=dict(l=10, r=10, t=10, b=10)
-)
-    # === 3. Samenvatting Matrix
-summary_matrix = {
-        "Proces": {
-            (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
-            (2.0, 3.0): "🟠 Er is sprake van beperkte acceptatie. Medewerkers zijn afwachtend en begrijpen het nut van de verandering niet volledig. De nieuwe processen worden mogelijk wel toegepast, maar zonder overtuiging of consistentie. Er is risico op terugval of schijnacceptatie.",
-            (3.0, 4.0): "🟡 De organisatie past de nieuwe processen grotendeels toe, maar nog niet vanzelfsprekend of efficiënt. Er is ruimte voor verbetering in vaardigheid, vertrouwen of motivatie. Zonder aanvullende ondersteuning blijft de verandering kwetsbaar of versnipperd.",
-            (4.0, 5.0): "🟢 De verandering wordt in de meeste delen van de organisatie goed toegepast. Medewerkers zien de meerwaarde en handelen ernaar. Wel is continue versterking nodig om terugval te voorkomen en het gedrag structureel te verankeren.",
-            (5.0,):     "🟢 De procesverandering is volledig geïntegreerd in het dagelijks werk. Medewerkers tonen eigenaarschap, passen de processen proactief toe en verbeteren ze zelfs waar mogelijk. De organisatie functioneert aantoonbaar beter op basis van de nieuwe werkwijzen."
-        },
-        "Technologie": {
-            (1.0, 2.0): "🔴 De organisatie kampt met weerstand tegen het nieuwe systeem of tool. Medewerkers vermijden gebruik, tonen frustratie en ervaren onzekerheid of angst. De verandering ondermijnt productiviteit en levert risico’s op voor fouten of inefficiëntie.",
-            (2.0, 3.0): "🟠 De technologie wordt met moeite toegepast. Medewerkers gebruiken de tool alleen wanneer het moet, vaak met fouten of inefficiëntie. Er is een duidelijke kloof in vaardigheden en vertrouwen, waardoor draagvlak ontbreekt.",
-            (3.0, 4.0): "🟡 Het systeem wordt grotendeels gebruikt, maar niet optimaal. Medewerkers kennen de basis, maar benutten de technologie niet efficiënt. Er is risico op suboptimaal gebruik en frustratie bij complexere taken.",
-            (4.0, 5.0): "🟢 De technologie wordt functioneel en met vertrouwen gebruikt. Medewerkers zien het voordeel, werken er dagelijks mee en helpen collega’s. Borging en optimalisatie zijn nodig om het gebruik structureel en toekomstbestendig te maken.",
-            (5.0,):     "🟢 De technologie is vanzelfsprekend onderdeel van het werk. Medewerkers benutten het systeem effectief, denken mee over verbetering en dragen actief bij aan innovatie of opschaling."
-        },
-        "Structuur": {
-            (1.0, 2.0): "🔴 De organisatie ervaart chaos of weerstand. Medewerkers begrijpen hun nieuwe rol niet of verzetten zich tegen verlies van status, teamverband of duidelijkheid. Dit leidt tot verminderde samenwerking en risico op interne frictie.",
-            (2.0, 3.0): "🟠 De structuur is formeel aangepast, maar wordt nog niet begrepen of gedragen. Er is verwarring over verantwoordelijkheden, besluitvorming en positionering. Dit belemmert de effectiviteit van teams en leiderschap.",
-            (3.0, 4.0): "🟡 Er is een begin van structuuracceptatie, maar inconsistentie in toepassing en gedrag. Sommige teams functioneren volgens de nieuwe lijnen, anderen vallen terug in oude patronen. Er is behoefte aan heldere rolduiding en alignment.",
-            (4.0, 5.0): "🟢 De nieuwe structuur wordt grotendeels gevolgd en medewerkers nemen hun rol serieus. Wel zijn er nog vragen of onduidelijkheden bij cross-functionele samenwerking of escalatiepunten. Stabilisatie is nodig.",
-            (5.0,):     "🟢 De structuur is volledig geïntegreerd. Rollen, mandaten en samenwerking zijn helder en efficiënt. De organisatie is wendbaar en medewerkers opereren met vertrouwen binnen hun nieuwe context."
-        },
-        "Cultuur": {
-            (1.0, 2.0): "🔴 De cultuurverandering wordt verworpen of genegeerd. Medewerkers geloven niet in de gewenste waarden of zien deze als onrealistisch of top-down opgelegd. Informele normen ondermijnen de gewenste gedragsverandering.",
-            (2.0, 3.0): "🟠 De nieuwe cultuur wordt met scepsis bekeken. Medewerkers volgen formeel het gewenste gedrag, maar geloven er niet in. Oud gedrag wordt in stand gehouden via informele patronen of voorbeeldgedrag van leiders.",
-            (3.0, 4.0): "🟡 De organisatie spreekt de nieuwe waarden uit, maar in gedrag is de verandering nog niet consistent zichtbaar. Er is bereidheid, maar ook onzekerheid over wat het concreet betekent. Cultuurverandering blijft oppervlakkig.",
-            (4.0, 5.0): "🟢 De nieuwe cultuur wordt zichtbaar in gedrag en houding. Medewerkers herkennen de kernwaarden en passen die toe in samenwerking. Wel is voortdurende versterking en voorbeeldgedrag van leiders nodig.",
-            (5.0,):     "🟢 De gewenste cultuur is vanzelfsprekend geworden. Waarden zijn voelbaar in taal, gedrag en besluitvorming. Medewerkers houden elkaar verantwoordelijk en zijn trots op de gedeelde identiteit van de organisatie."
+    # === 1. Gauge chart
+    fig_gauge = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=avg_score,
+        title={'text': "Gemiddelde ADKAR-score"},
+        gauge={
+            'axis': {'range': [1, 5], 'tickwidth': 1, 'tickcolor': "darkblue"},
+            'bar': {'color': "royalblue"},
+            'steps': [
+                {'range': [1.0, 2.0], 'color': '#ffcccc'},
+                {'range': [2.0, 3.0], 'color': '#ffe0b3'},
+                {'range': [3.0, 4.0], 'color': '#ffffb3'},
+                {'range': [4.0, 5.0], 'color': '#ccffcc'}
+            ],
         }
-    }
+    ))
+    fig_gauge.update_layout(height=250, margin=dict(l=10, r=10, t=50, b=10))
 
-# Hulp: juiste tekst ophalen
-def get_summary(avg_score, change_type):
-    for key in summary_matrix[change_type]:
-        low = key[0]
-        high = key[1] if len(key) > 1 else 5.0
-        if low <= avg_score < high or avg_score == 5.0:
-            return summary_matrix[change_type][key]
-    return "⚠️ Geen samenvatting beschikbaar."
+    # === 2. Radar chart
+    labels = ADKAR_DOMAINS.copy()
+    scores = [results[d]["score"] for d in labels]
+    scores += scores[:1]
+    labels += labels[:1]
 
-summary_text = get_summary(avg_score, change_type)
+    fig_radar = go.Figure()
+    fig_radar.add_trace(go.Scatterpolar(
+        r=scores,
+        theta=labels,
+        fill='toself',
+        name='ADKAR Scores',
+        line=dict(color='royalblue')
+    ))
+    fig_radar.update_layout(
+        polar=dict(radialaxis=dict(visible=True, range=[0, 5])),
+        showlegend=False,
+        height=250,
+        margin=dict(l=10, r=10, t=10, b=10)
+    )
+        # === 3. Samenvatting Matrix
+    summary_matrix = {
+            "Proces": {
+                (1.0, 2.0): "🔴 De organisatie ervaart actieve of passieve weerstand tegen de nieuwe processen. Medewerkers houden vast aan oude werkwijzen en tonen weinig tot geen bereidheid om zich aan te passen. Dit vormt een directe bedreiging voor succesvolle implementatie en vereist intensieve interventie.",
+                (2.0, 3.0): "🟠 Er is sprake van beperkte acceptatie. Medewerkers zijn afwachtend en begrijpen het nut van de verandering niet volledig. De nieuwe processen worden mogelijk wel toegepast, maar zonder overtuiging of consistentie. Er is risico op terugval of schijnacceptatie.",
+                (3.0, 4.0): "🟡 De organisatie past de nieuwe processen grotendeels toe, maar nog niet vanzelfsprekend of efficiënt. Er is ruimte voor verbetering in vaardigheid, vertrouwen of motivatie. Zonder aanvullende ondersteuning blijft de verandering kwetsbaar of versnipperd.",
+                (4.0, 5.0): "🟢 De verandering wordt in de meeste delen van de organisatie goed toegepast. Medewerkers zien de meerwaarde en handelen ernaar. Wel is continue versterking nodig om terugval te voorkomen en het gedrag structureel te verankeren.",
+                (5.0,):     "🟢 De procesverandering is volledig geïntegreerd in het dagelijks werk. Medewerkers tonen eigenaarschap, passen de processen proactief toe en verbeteren ze zelfs waar mogelijk. De organisatie functioneert aantoonbaar beter op basis van de nieuwe werkwijzen."
+            },
+            "Technologie": {
+                (1.0, 2.0): "🔴 De organisatie kampt met weerstand tegen het nieuwe systeem of tool. Medewerkers vermijden gebruik, tonen frustratie en ervaren onzekerheid of angst. De verandering ondermijnt productiviteit en levert risico’s op voor fouten of inefficiëntie.",
+                (2.0, 3.0): "🟠 De technologie wordt met moeite toegepast. Medewerkers gebruiken de tool alleen wanneer het moet, vaak met fouten of inefficiëntie. Er is een duidelijke kloof in vaardigheden en vertrouwen, waardoor draagvlak ontbreekt.",
+                (3.0, 4.0): "🟡 Het systeem wordt grotendeels gebruikt, maar niet optimaal. Medewerkers kennen de basis, maar benutten de technologie niet efficiënt. Er is risico op suboptimaal gebruik en frustratie bij complexere taken.",
+                (4.0, 5.0): "🟢 De technologie wordt functioneel en met vertrouwen gebruikt. Medewerkers zien het voordeel, werken er dagelijks mee en helpen collega’s. Borging en optimalisatie zijn nodig om het gebruik structureel en toekomstbestendig te maken.",
+                (5.0,):     "🟢 De technologie is vanzelfsprekend onderdeel van het werk. Medewerkers benutten het systeem effectief, denken mee over verbetering en dragen actief bij aan innovatie of opschaling."
+            },
+            "Structuur": {
+                (1.0, 2.0): "🔴 De organisatie ervaart chaos of weerstand. Medewerkers begrijpen hun nieuwe rol niet of verzetten zich tegen verlies van status, teamverband of duidelijkheid. Dit leidt tot verminderde samenwerking en risico op interne frictie.",
+                (2.0, 3.0): "🟠 De structuur is formeel aangepast, maar wordt nog niet begrepen of gedragen. Er is verwarring over verantwoordelijkheden, besluitvorming en positionering. Dit belemmert de effectiviteit van teams en leiderschap.",
+                (3.0, 4.0): "🟡 Er is een begin van structuuracceptatie, maar inconsistentie in toepassing en gedrag. Sommige teams functioneren volgens de nieuwe lijnen, anderen vallen terug in oude patronen. Er is behoefte aan heldere rolduiding en alignment.",
+                (4.0, 5.0): "🟢 De nieuwe structuur wordt grotendeels gevolgd en medewerkers nemen hun rol serieus. Wel zijn er nog vragen of onduidelijkheden bij cross-functionele samenwerking of escalatiepunten. Stabilisatie is nodig.",
+                (5.0,):     "🟢 De structuur is volledig geïntegreerd. Rollen, mandaten en samenwerking zijn helder en efficiënt. De organisatie is wendbaar en medewerkers opereren met vertrouwen binnen hun nieuwe context."
+            },
+            "Cultuur": {
+                (1.0, 2.0): "🔴 De cultuurverandering wordt verworpen of genegeerd. Medewerkers geloven niet in de gewenste waarden of zien deze als onrealistisch of top-down opgelegd. Informele normen ondermijnen de gewenste gedragsverandering.",
+                (2.0, 3.0): "🟠 De nieuwe cultuur wordt met scepsis bekeken. Medewerkers volgen formeel het gewenste gedrag, maar geloven er niet in. Oud gedrag wordt in stand gehouden via informele patronen of voorbeeldgedrag van leiders.",
+                (3.0, 4.0): "🟡 De organisatie spreekt de nieuwe waarden uit, maar in gedrag is de verandering nog niet consistent zichtbaar. Er is bereidheid, maar ook onzekerheid over wat het concreet betekent. Cultuurverandering blijft oppervlakkig.",
+                (4.0, 5.0): "🟢 De nieuwe cultuur wordt zichtbaar in gedrag en houding. Medewerkers herkennen de kernwaarden en passen die toe in samenwerking. Wel is voortdurende versterking en voorbeeldgedrag van leiders nodig.",
+                (5.0,):     "🟢 De gewenste cultuur is vanzelfsprekend geworden. Waarden zijn voelbaar in taal, gedrag en besluitvorming. Medewerkers houden elkaar verantwoordelijk en zijn trots op de gedeelde identiteit van de organisatie."
+            }
+        }
 
-# === 4. Lay-out visualisaties + samenvatting
-left_col, right_col = st.columns([1.2, 1])
+    # Hulp: juiste tekst ophalen
+    def get_summary(avg_score, change_type):
+        for key in summary_matrix[change_type]:
+            low = key[0]
+            high = key[1] if len(key) > 1 else 5.0
+            if low <= avg_score < high or avg_score == 5.0:
+                return summary_matrix[change_type][key]
+        return "⚠️ Geen samenvatting beschikbaar."
 
-with left_col:
-    st.plotly_chart(fig_gauge, use_container_width=True)
-    st.plotly_chart(fig_radar, use_container_width=True)
+    summary_text = get_summary(avg_score, change_type)
 
-with right_col:
-    st.markdown("#### 🧠 ADKAR Samenvatting")
-    st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
+    # === 4. Lay-out visualisaties + samenvatting
+    left_col, right_col = st.columns([1.2, 1])
 
-st.markdown("</div>", unsafe_allow_html=True)
+    with left_col:
+        st.plotly_chart(fig_gauge, use_container_width=True)
+        st.plotly_chart(fig_radar, use_container_width=True)
+
+    with right_col:
+        st.markdown("#### 🧠 ADKAR Samenvatting")
+        st.markdown(f"<p style='font-size: 18px;'>{summary_text}</p>", unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
     
 # === Witruimte boven de titel
